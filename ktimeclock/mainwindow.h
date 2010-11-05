@@ -8,6 +8,7 @@
 #define KTIMECLOCK_MAINWINDOW_H
 
 #include <KMainWindow>
+#include "ktimeclock.h"
 
 class KTimeclockDocker;
 
