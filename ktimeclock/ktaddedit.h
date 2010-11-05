@@ -12,6 +12,7 @@
 #include <KLineEdit>
 #include <KDoubleNumInput>
 #include <Q3GridLayout>
+#include <KIntNumInput>
 
 /**
  * Dialog to allow us to add or edit Projects/Sub-projects within KTimeclock.
