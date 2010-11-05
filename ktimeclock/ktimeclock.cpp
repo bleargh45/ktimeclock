@@ -599,7 +599,7 @@ void KTimeclock::clearSession ()
 // ----------------------------------------------------------------------------
 void KTimeclock::preferences ()
 {
-    KTimeclockConfig* cfg = new KTimeclockConfig( this, "cfg" );
+    KTimeclockConfig* cfg = new KTimeclockConfig( this );
     if (cfg->exec()) {
         // --------------------------------------------------------------------
         // Reset everything that got information from the preferences dialog.
