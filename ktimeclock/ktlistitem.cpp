@@ -223,7 +223,7 @@ double KTimeclockListItem::effectiveRate () const
             }
             else
             {
-                warning( "SHOULDN'T BE HERE! (KTimeclockListItem::effectiveRate())" );
+                qWarning( "SHOULDN'T BE HERE! (KTimeclockListItem::effectiveRate())" );
                 return 0.0;
             }
         }
