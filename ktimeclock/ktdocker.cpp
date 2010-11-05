@@ -5,7 +5,6 @@
 // ----------------------------------------------------------------------------
 
 #include "ktdocker.h"
-#include <KPopupMenu>
 #include <KLocale>
 #include <KIconLoader>
 #include <QTimer>
