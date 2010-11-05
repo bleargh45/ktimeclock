@@ -11,6 +11,7 @@
 #include "resource.h"
 
 #include <QString>
+#include <KAction>
 #include <KConfig>
 #include <KEditToolBar>
 #include <KGlobal>
