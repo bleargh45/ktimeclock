@@ -872,7 +872,7 @@ void KTimeclock::_setAutosaveTimer ()
     // ------------------------------------------------------------------------
     KSharedConfigPtr cfg = KGlobal::config();
     KConfigGroup generalGroup(cfg, "General");
-    int minutes = generalGroup.readEntry( "autosave" );
+    int minutes = generalGroup.readEntry( "autosave", 5 );
 
     // ------------------------------------------------------------------------
     // If we were given a value to auto-save with, set up a timer to go off

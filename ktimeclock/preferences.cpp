@@ -154,7 +154,7 @@ void KTimeclockConfig::makeGeneralPage ()
     grid->addWidget( _general.autosaveLbl, 0, 0 );
 
     _general.autosaveNum = new KIntNumInput( page );
-    _general.autosaveNum->setValue( generalGroup->readEntry( "autosave", 1 ) );
+    _general.autosaveNum->setValue( generalGroup->readEntry( "autosave", 5 ) );
     grid->addWidget( _general.autosaveNum, 0, 1 );
 }
 
