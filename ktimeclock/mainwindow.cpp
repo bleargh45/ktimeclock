@@ -14,7 +14,7 @@
 #include <KConfig>
 #include <KEditToolBar>
 #include <KGlobal>
-#include <KKeyDialog>
+#include <KShortcutsDialog>
 #include <KLocale>
 #include <KMenuBar>
 #include <KStandardAction>
@@ -181,7 +181,7 @@ void KTimeclockWindow::loadGeometry ()
 // ----------------------------------------------------------------------------
 void KTimeclockWindow::keyBindings ()
 {
-    KKeyDialog::configureKeys( this->actionCollection(), this->xmlFile() );
+    KShortcutsDialog::configureKeys( this->actionCollection(), this->xmlFile() );
 }
 
 // ----------------------------------------------------------------------------
