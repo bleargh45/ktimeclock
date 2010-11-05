@@ -131,12 +131,6 @@ class KTimeclock : public K3ListView
          */
         void clearSession ();
 
-        /**
-         * Shows the preferences dialog to the user, and updates our own
-         * internal values based on the information set in the dialog.
-         */
-        void preferences ();
-
     signals:
         /**
          * Emits a status message, which can optionally be shown to the user.

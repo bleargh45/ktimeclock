@@ -240,8 +240,6 @@ void KTimeclockWindow::initMenus ()
                 actionCollection() );
     KStandardAction::configureToolbars( this, SLOT(cfgToolbars()),
                 actionCollection() );
-    KStandardAction::preferences( _timeclock, SLOT(preferences()),
-                actionCollection() );
 
     // ------------------------------------------------------------------------
     // Our own custom menu items

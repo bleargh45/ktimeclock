@@ -11,7 +11,6 @@ set(ktimeclock_SRCS
     ktdocker.cpp
     ktlistitem.cpp
     ktaddedit.cpp
-    preferences.cpp
     ktimeclock.cpp
     mainwindow.cpp
     main.cpp

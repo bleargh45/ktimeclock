@@ -8,7 +8,6 @@
 #include "ktaddedit.h"
 #include "kttime.h"
 #include "ktlistitem.h"
-#include "preferences.h"
 #include <Q3Header>
 #include <QFile>
 #include <QString>
@@ -575,24 +574,6 @@ void KTimeclock::clearSession ()
         emit sessionTime( KTimeclockTime::asString(_session_time) );
         emit status( i18n("Session time reset") );
     }
-}
-
-// ----------------------------------------------------------------------------
-// Function:    preferences ()
-// ----------------------------------------------------------------------------
-// Shows the preferences dialog to the user, and updates our own internal
-// values based on the information set in the dialog.
-// ----------------------------------------------------------------------------
-void KTimeclock::preferences ()
-{
-    KTimeclockConfig* cfg = new KTimeclockConfig( this );
-    if (cfg->exec()) {
-        // --------------------------------------------------------------------
-        // Reset everything that got information from the preferences dialog.
-        // --------------------------------------------------------------------
-        this->_setAutosaveTimer();
-    }
-    delete cfg;
 }
 
 void KTimeclock::secondTimerEvent() {
