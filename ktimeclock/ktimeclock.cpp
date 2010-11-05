@@ -206,22 +206,22 @@ void KTimeclock::saveData ()
 void KTimeclock::loadPreferences ()
 {
     emit status( "Loading data..." );
-    KConfig& cfg = *KGlobal::config();
+    KConfig* cfg = KGlobal::config();
+    KConfigGroup columnGroup( cfg, "Column Sizes" );
 
     // ------------------------------------------------------------------------
     // Read in the sizes of the columns out of our config file.
     // ------------------------------------------------------------------------
-    cfg.setGroup( "Column Sizes" );
     int w;
-    w = cfg.readNumEntry( "Description", 300 );
+    w = columnGroup.readEntry( "Description", 300 );
     setColumnWidth( _col_description, w );
-    w = cfg.readNumEntry( "Session", 70 );
+    w = columnGroup.readEntry( "Session", 70 );
     setColumnWidth( _col_session, w );
-    w = cfg.readNumEntry( "Total", 70 );
+    w = columnGroup.readEntry( "Total", 70 );
     setColumnWidth( _col_total, w );
-    w = cfg.readNumEntry( "Rate", 70 );
+    w = columnGroup.readEntry( "Rate", 70 );
     setColumnWidth( _col_rate, w );
-    w = cfg.readNumEntry( "Earnings", 70 );
+    w = columnGroup.readEntry( "Earnings", 70 );
     setColumnWidth( _col_earnings, w );
 
     // ------------------------------------------------------------------------
@@ -243,18 +243,18 @@ void KTimeclock::loadPreferences ()
 void KTimeclock::savePreferences ()
 {
     emit status( "Saving data..." );
-    KConfig& cfg = *KGlobal::config();
+    KConfig* cfg = KGlobal::config();
+    KConfigGroup columnGroup( cfg, "Column Sizes" );
 
     // ------------------------------------------------------------------------
     // Write out the sizes of all of our columns to our config file.
     // ------------------------------------------------------------------------
-    cfg.setGroup( "Column Sizes" );
-    cfg.writeEntry( "Description",  columnWidth(_col_description) );
-    cfg.writeEntry( "Session",      columnWidth(_col_session) );
-    cfg.writeEntry( "Total",        columnWidth(_col_total) );
-    cfg.writeEntry( "Rate",         columnWidth(_col_rate) );
-    cfg.writeEntry( "Earnings",     columnWidth(_col_earnings) );
-    cfg.sync();
+    columnGroup.writeEntry( "Description",  columnWidth(_col_description) );
+    columnGroup.writeEntry( "Session",      columnWidth(_col_session) );
+    columnGroup.writeEntry( "Total",        columnWidth(_col_total) );
+    columnGroup.writeEntry( "Rate",         columnWidth(_col_rate) );
+    columnGroup.writeEntry( "Earnings",     columnWidth(_col_earnings) );
+    columnGroup.config()->sync();
 
     // ------------------------------------------------------------------------
     // All done saving our preferences.
