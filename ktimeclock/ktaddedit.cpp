@@ -43,7 +43,7 @@ DlgAddEditProject::DlgAddEditProject (QWidget* parent, const char* name)
     lblDescription->setText( i18n("Description:") );
     _layout->addWidget( lblDescription, 0, 0, Qt::AlignRight );
 
-    _txtDescription = new KLineEdit( page, "_txtDescription" );
+    _txtDescription = new KLineEdit( page );
     _txtDescription->setMinimumWidth( this->fontMetrics().maxWidth() * 20 );
     _layout->addMultiCellWidget( _txtDescription, 0, 0, 1, 4, Qt::AlignLeft );
 
@@ -54,7 +54,7 @@ DlgAddEditProject::DlgAddEditProject (QWidget* parent, const char* name)
     lblRate->setText( i18n("Rate:") );
     _layout->addWidget( lblRate, 1, 0, Qt::AlignRight );
 
-    _comboRateModifier = new KComboBox( page, "_comboRateModifier" );
+    _comboRateModifier = new KComboBox( page );
     _comboRateModifier->insertItem( i18n("Parent's rate") );
     _comboRateModifier->insertItem( "=" );
     _comboRateModifier->insertItem( "+" );
@@ -63,7 +63,7 @@ DlgAddEditProject::DlgAddEditProject (QWidget* parent, const char* name)
     _comboRateModifier->insertItem( "/" );
     _layout->addWidget( _comboRateModifier, 1, 1, Qt::AlignRight );
 
-    _spinRate = new KDoubleNumInput( page, "_spinRate" );
+    _spinRate = new KDoubleNumInput( page );
     _spinRate->setRange( 0.0, 99999.99, 1.0, false );
     _layout->addWidget( _spinRate, 1, 2, Qt::AlignLeft );
 
@@ -203,14 +203,14 @@ DlgAddEditTask::DlgAddEditTask (QWidget* parent, const char* name)
     lblTime->setText( i18n("Time spent:") );
     _layout->addWidget( lblTime, 2, 0, Qt::AlignRight );
 
-    _spinHours = new KIntNumInput( page, "_spinHours" );
+    _spinHours = new KIntNumInput( page );
     _layout->addWidget( _spinHours, 2, 1, Qt::AlignLeft );
 
-    _spinMinutes = new KIntNumInput( page, "_spinMinutes" );
+    _spinMinutes = new KIntNumInput( page );
     _spinMinutes->setRange( 0, 59, 1, false );
     _layout->addWidget( _spinMinutes, 2, 2, Qt::AlignLeft );
 
-    _spinSeconds = new KIntNumInput( page, "_spinSeconds" );
+    _spinSeconds = new KIntNumInput( page );
     _spinSeconds->setRange( 0, 59, 1, false );
     _layout->addWidget( _spinSeconds, 2, 3, Qt::AlignLeft );
 
