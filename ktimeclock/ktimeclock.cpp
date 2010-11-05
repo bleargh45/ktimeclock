@@ -9,7 +9,6 @@
 #include "kttime.h"
 #include "ktlistitem.h"
 #include "preferences.h"
-#include <QDom>
 #include <Q3Header>
 #include <QFile>
 #include <QString>
