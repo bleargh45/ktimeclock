@@ -19,14 +19,13 @@
 #include <KNumInput>
 
 // ----------------------------------------------------------------------------
-// Function:    KTimeclockConfig (QWidget* parent=0, const char* name=0)
+// Function:    KTimeclockConfig (QWidget* parent=0)
 // Parameters:  parent      - Handle to parent widget
-//              name        - Name of this widget
 // ----------------------------------------------------------------------------
 // Constructor.
 // ----------------------------------------------------------------------------
-KTimeclockConfig::KTimeclockConfig (QWidget* parent, const char* name)
-    : KDialog(IconList, i18n("Configure"), Help|Apply|Ok|Cancel, Ok, parent, name, true, true )
+KTimeclockConfig::KTimeclockConfig (QWidget* parent)
+    : KDialog(IconList, i18n("Configure"), Help|Apply|Ok|Cancel, Ok, parent, true, true )
 {
 // UNFINISHED -> Doesn't set up the default 'help' page.
     this->makeGeneralPage();
@@ -154,7 +153,7 @@ void KTimeclockConfig::makeGeneralPage ()
     _general.autosaveLbl->setText( i18n("Autosave every 'n' minutes (0 disables)" ) );
     grid->addWidget( _general.autosaveLbl, 0, 0 );
 
-    _general.autosaveNum = new KIntNumInput( page, "_general.autosaveNum" );
+    _general.autosaveNum = new KIntNumInput( page );
     _general.autosaveNum->setValue( cfg->readNumEntry( "autosave" ) );
     grid->addWidget( _general.autosaveNum, 0, 1 );
 }

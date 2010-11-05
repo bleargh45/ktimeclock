@@ -34,14 +34,14 @@ KTimeclockWindow::KTimeclockWindow ()
     // ------------------------------------------------------------------------
     // Create a new timeclock and make that our central widget
     // ------------------------------------------------------------------------
-    _timeclock = new KTimeclock( this, "_timeclock" );
+    _timeclock = new KTimeclock( this );
     setCentralWidget( _timeclock );
 
     // ------------------------------------------------------------------------
     // Create a dock widget to go along with the timeclock, and connect it to
     // the timeclock.
     // ------------------------------------------------------------------------
-    _docker = new KTimeclockDocker( this, "_docker" );
+    _docker = new KTimeclockDocker( this );
     _docker->show();
     _docker->connect( _timeclock, SIGNAL(timerStarted()), SLOT(timerStarted()) );
     _docker->connect( _timeclock, SIGNAL(timerStopped()), SLOT(timerStopped()) );

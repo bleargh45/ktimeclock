@@ -26,9 +26,8 @@ class KTimeclockConfig : public KDialog
          * Constructor.
          *
          * @param   parent  Handle to parent widget
-         * @param   name    Name of this widget
          */
-        KTimeclockConfig (QWidget* parent=0, const char* name=0);
+        KTimeclockConfig (QWidget* parent=0);
 
         /**
          * Destructor.

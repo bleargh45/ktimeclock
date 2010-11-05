@@ -26,14 +26,13 @@
 #include <KIO/NetAccess>
 
 // ----------------------------------------------------------------------------
-// Function:    KTimeclock (QWidget* parent=0, const char* name=0)
+// Function:    KTimeclock (QWidget* parent=0)
 // Parameters:  parent      - Handle to parent widget
-//              name        - Name of this widget
 // ----------------------------------------------------------------------------
 // Constructs a new KTimeclock widget.
 // ----------------------------------------------------------------------------
-KTimeclock::KTimeclock (QWidget* parent, const char* name)
-    : K3ListView(parent, name), _seconds_timer(NULL), _autosave_timer(NULL)
+KTimeclock::KTimeclock (QWidget* parent)
+    : K3ListView(parent), _seconds_timer(NULL), _autosave_timer(NULL)
 {
     // ------------------------------------------------------------------------
     // Create all of the columns that we're going to display.

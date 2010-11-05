@@ -30,9 +30,8 @@ class KTimeclock : public K3ListView
          * Constructs a new KTimeclock widget.
          *
          * @param   parent  Handle to parent widget.
-         * @param   name    Name of this widget.
          */
-        KTimeclock (QWidget* parent=0, const char* name=0);
+        KTimeclock (QWidget* parent=0);
 
         /**
          * Destructs the widget.
