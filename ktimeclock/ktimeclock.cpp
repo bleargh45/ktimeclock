@@ -476,16 +476,12 @@ void KTimeclock::deleteItem ()
     // ------------------------------------------------------------------------
     QString msg;
     if (selected->isProject()) {
-        msg.sprintf(
-            i18n("Do you really want to delete '%s' and all sub-projects and tasks?"),
-            selected->description().data()
-            );
+        msg = i18n("Do you really want to delete '%1' and all sub-projects and tasks?")
+            .arg(selected->description());
     }
     else {
-        msg.sprintf(
-            i18n("Do you really want to delete '%s'?"),
-            selected->description().data()
-            );
+        msg = i18n("Do you really want to delete '%1'?")
+            .arg(selected->description());
     }
 
     // ------------------------------------------------------------------------
