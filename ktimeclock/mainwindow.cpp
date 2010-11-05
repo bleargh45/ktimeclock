@@ -138,7 +138,7 @@ void KTimeclockWindow::updateState (const QString state)
 // ----------------------------------------------------------------------------
 void KTimeclockWindow::saveGeometry ()
 {
-    KConfig* cfg = KGlobal::config();
+    KSharedConfigPtr cfg = KGlobal::config();
     KConfigGroup windowGroup(cfg, "Main Window Geometry");
     windowGroup.writeEntry( "Width",    this->width() );
     windowGroup.writeEntry( "Height",   this->height() );
@@ -155,7 +155,7 @@ void KTimeclockWindow::saveGeometry ()
 // ----------------------------------------------------------------------------
 void KTimeclockWindow::loadGeometry ()
 {
-    KConfig* cfg = KGlobal::config();
+    KSharedConfigPtr cfg = KGlobal::config();
     KConfigGroup windowGroup(cfg, "Main Window Geometry");
     int w = windowGroup.readEntry( "Width", 620 );
     int h = windowGroup.readEntry( "Height", 400 );

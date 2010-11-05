@@ -205,7 +205,7 @@ void KTimeclock::saveData ()
 void KTimeclock::loadPreferences ()
 {
     emit status( "Loading data..." );
-    KConfig* cfg = KGlobal::config();
+    KSharedConfigPtr cfg = KGlobal::config();
     KConfigGroup columnGroup( cfg, "Column Sizes" );
 
     // ------------------------------------------------------------------------
@@ -242,7 +242,7 @@ void KTimeclock::loadPreferences ()
 void KTimeclock::savePreferences ()
 {
     emit status( "Saving data..." );
-    KConfig* cfg = KGlobal::config();
+    KSharedConfigPtr cfg = KGlobal::config();
     KConfigGroup columnGroup( cfg, "Column Sizes" );
 
     // ------------------------------------------------------------------------
@@ -874,7 +874,7 @@ void KTimeclock::_setAutosaveTimer ()
     // ------------------------------------------------------------------------
     // Get the number of minutes between auto-saves.
     // ------------------------------------------------------------------------
-    KConfig* cfg = KGlobal::config();
+    KSharedConfigPtr cfg = KGlobal::config();
     KConfigGroup generalGroup(cfg, "General");
     int minutes = generalGroup.readEntry( "autosave" );
 

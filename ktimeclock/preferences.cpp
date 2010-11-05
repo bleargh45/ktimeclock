@@ -66,7 +66,7 @@ void KTimeclockConfig::slotApply ()
     // ------------------------------------------------------------------------
     // Get a handle to the config object.
     // ------------------------------------------------------------------------
-    KConfig* cfg = KGlobal::config();
+    KSharedConfigPtr cfg = KGlobal::config();
 
     // ------------------------------------------------------------------------
     // "General" options.
@@ -140,7 +140,7 @@ void KTimeclockConfig::makeGeneralPage ()
     // ------------------------------------------------------------------------
     // Get a handle to the config object we're pulling values out of.
     // ------------------------------------------------------------------------
-    KConfig* cfg = KGlobal::config();
+    KSharedConfigPtr cfg = KGlobal::config();
     KConfigGroup generalGroup(cfg, "General");
 
     // ------------------------------------------------------------------------
@@ -185,7 +185,7 @@ void KTimeclockConfig::makeReportPage ()
     // ------------------------------------------------------------------------
     // Get a handle to the config object we're pulling values out of.
     // ------------------------------------------------------------------------
-    KConfig* cfg = KGlobal::config();
+    KSharedConfigPtr cfg = KGlobal::config();
     KConfigGroup reportGroup( cfg, "Report" );
 
     // ------------------------------------------------------------------------
