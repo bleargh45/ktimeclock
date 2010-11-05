@@ -33,9 +33,8 @@ class DlgAddEditProject : public KDialog
          * Constructs a new DlgAddEditProject widget.
          *
          * @param   parent  Handle to parent widget
-         * @param   name    Name of this widget.
          */
-        DlgAddEditProject (QWidget* parent=0, const char* name=0);
+        DlgAddEditProject (QWidget* parent=0);
 
         /**
          * Destructs the widget.
@@ -118,9 +117,8 @@ class DlgAddEditTask : public DlgAddEditProject
          * Constructs a new DlgAddEditTask widget.
          *
          * @param   parent Handle to parent widget.
-         * @param   name    Name of this widget.
          */
-        DlgAddEditTask (QWidget* parent=0, const char* name=0);
+        DlgAddEditTask (QWidget* parent=0);
 
         /**
          * Destructs the widget.

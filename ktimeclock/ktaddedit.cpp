@@ -16,15 +16,17 @@
 #include <KComboBox>
 
 // ----------------------------------------------------------------------------
-// Function:    DlgAddEditProject (QWidget* parent=0, const char* name=0)
+// Function:    DlgAddEditProject (QWidget* parent=0)
 // Parameters:  parent      - Handle to parent widget
-//              name        - Name of this widget
 // ----------------------------------------------------------------------------
 // Constructs a new DlgAddEditProject widget.
 // ----------------------------------------------------------------------------
-DlgAddEditProject::DlgAddEditProject (QWidget* parent, const char* name)
-    : KDialog(parent, name, true, QString::null, Ok|Cancel, Ok, false)
+DlgAddEditProject::DlgAddEditProject (QWidget* parent)
+    : KDialog(parent)
 {
+    this->setModal( true );
+    this->setButtons( KDialog::Ok | KDialog::Cancel );
+
     // ------------------------------------------------------------------------
     // Create a widget that we can use to lay everything out on.
     // ------------------------------------------------------------------------
@@ -174,14 +176,13 @@ QString DlgAddEditProject::rate ()
 
 
 // ----------------------------------------------------------------------------
-// Function:    DlgAddEditTask (QWidget* parent=0, const char* name=0)
+// Function:    DlgAddEditTask (QWidget* parent=0)
 // Parameters:  parent      - Handle to parent widget
-//              name        - Name of this widget
 // ----------------------------------------------------------------------------
 // Constructs a new DlgAddEditTask widget.
 // ----------------------------------------------------------------------------
-DlgAddEditTask::DlgAddEditTask (QWidget* parent, const char* name)
-    : DlgAddEditProject(parent, name)
+DlgAddEditTask::DlgAddEditTask (QWidget* parent)
+    : DlgAddEditProject(parent)
 {
     // ------------------------------------------------------------------------
     // Get a handle to the main widget, so we can create our other widgets as

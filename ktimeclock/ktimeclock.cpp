@@ -306,7 +306,7 @@ void KTimeclock::stop ()
 // ----------------------------------------------------------------------------
 void KTimeclock::addProject ()
 {
-    DlgAddEditProject* dlg = new DlgAddEditProject( this, "dlg" );
+    DlgAddEditProject* dlg = new DlgAddEditProject( this );
     dlg->setCaption( i18n("Add project") );
     if (dlg->exec()) {
         KTimeclockListItem* item = new KTimeclockListItem( this );
@@ -341,7 +341,7 @@ void KTimeclock::addSubProject ()
     // Display the dialog to the user to get the information on the new
     // sub-project to add.
     // ------------------------------------------------------------------------
-    DlgAddEditProject* dlg = new DlgAddEditProject( this, "dlg" );
+    DlgAddEditProject* dlg = new DlgAddEditProject( this );
     dlg->setCaption( i18n("Add sub-project") );
     if (dlg->exec()) {
         KTimeclockListItem* item = new KTimeclockListItem( selected );
@@ -376,7 +376,7 @@ void KTimeclock::addTask ()
     // ------------------------------------------------------------------------
     // Show the dialog to the user and get the info on the new task.
     // ------------------------------------------------------------------------
-    DlgAddEditTask* dlg = new DlgAddEditTask( this, "dlg" );
+    DlgAddEditTask* dlg = new DlgAddEditTask( this );
     dlg->setCaption( i18n("Add task") );
     if (dlg->exec()) {
         KTimeclockListItem* item;
@@ -416,7 +416,7 @@ void KTimeclock::editItem ()
     // appropriate dialog to the user.
     // ------------------------------------------------------------------------
     if (selected->isProject()) {
-        DlgAddEditProject* dlg = new DlgAddEditProject( this, "dlg" );
+        DlgAddEditProject* dlg = new DlgAddEditProject( this );
         dlg->setCaption( i18n("Edit Project") );
         dlg->setDescription( selected->description() );
         dlg->setRate( selected->rate() );
@@ -427,7 +427,7 @@ void KTimeclock::editItem ()
         delete dlg;
     }
     else {
-        DlgAddEditTask* dlg = new DlgAddEditTask( this, "dlg" );
+        DlgAddEditTask* dlg = new DlgAddEditTask( this );
         dlg->setCaption( i18n("Edit Task") );
         dlg->setDescription( selected->description() );
         dlg->setTimeSpent( selected->timeSpent() );
