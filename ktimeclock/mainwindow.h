@@ -8,7 +8,6 @@
 #define KTIMECLOCK_MAINWINDOW_H
 
 #include <KMainWindow>
-#include <Q3PopupMenu>
 
 class KTimeclockDocker;
 
