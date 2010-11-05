@@ -134,14 +134,7 @@ void DlgAddEditProject::setRate (const QString& rate)
     // Find the modifier character in the combo box and make it the current
     // selection.
     // ------------------------------------------------------------------------
-    for (int modidx=0; modidx<_comboRateModifier->count(); modidx++)
-    {
-        if (_comboRateModifier->text( modidx ) == modifier)
-        {
-            _comboRateModifier->setCurrentItem( modidx );
-            break;
-        }
-    }
+    _comboRateModifier->setCurrentItem(modifier);
 
     // ------------------------------------------------------------------------
     // Set the rate into the spin box.
