@@ -28,9 +28,8 @@ class KTimeclockDocker : public KSystemTrayIcon
          * Constructs a new KTimeclockDocker widget.
          *
          * @param   parent  Handle to our parent widget
-         * @param   name    Name of this widget
          */
-        KTimeclockDocker (QWidget* parent=0, const char* name=0);
+        KTimeclockDocker (QWidget* parent=0);
 
         /**
          * Destructs the widget.

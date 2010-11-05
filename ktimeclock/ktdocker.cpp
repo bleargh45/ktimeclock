@@ -12,14 +12,13 @@
 #include <QTimerEvent>
 
 // ----------------------------------------------------------------------------
-// Function:    KTimeclockDocker *QWidget* parent=0, const char* name=0)
+// Function:    KTimeclockDocker *QWidget* parent=0)
 // Parameters:  parent      - Handle to our parent widget
-//              name        - Name of this widget
 // ----------------------------------------------------------------------------
 // Constructs a new KTimeclockDocker widget.
 // ----------------------------------------------------------------------------
-KTimeclockDocker::KTimeclockDocker (QWidget* parent, const char* name)
-    : KSystemTrayIcon( parent, name ), _timer_id(0), _frame(0)
+KTimeclockDocker::KTimeclockDocker (QWidget* parent)
+    : KSystemTrayIcon( parent ), _timer_id(0), _frame(0)
 {
     // ------------------------------------------------------------------------
     // Load up all of the pixmaps that we're going to use when animating the
