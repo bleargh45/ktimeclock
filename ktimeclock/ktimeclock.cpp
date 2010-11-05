@@ -999,7 +999,7 @@ void KTimeclock::_loadTextDataQueue (QQueue<QString> &queue, KTimeclockListItem*
         // Get the depth of this item and kick ourselves out if its at a lower
         // depth level than we're at.
         // --------------------------------------------------------------------
-        int currdepth = line.contains( '\t' ) - 1;
+        int currdepth = line.count( '\t' ) - 1;
         if (currdepth <= depth) { return; }
 
         // --------------------------------------------------------------------
@@ -1060,7 +1060,7 @@ void KTimeclock::_loadTextDataQueue (QQueue<QString> &queue, KTimeclockListItem*
             // ----------------------------------------------------------------
             // If its deeper, recurse.  If its shallower, abort.
             // ----------------------------------------------------------------
-        int nextdepth = line.contains( '\t' ) - 1;
+        int nextdepth = line.count( '\t' ) - 1;
         if (nextdepth > currdepth) {
             this->_loadTextDataQueue( queue, item, currdepth );
         }
