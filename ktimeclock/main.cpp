@@ -4,10 +4,10 @@
 // $Revision: 1.4 $
 // ----------------------------------------------------------------------------
 
-#include <kuniqueapp.h>
-#include <klocale.h>
-#include <kcmdlineargs.h>
-#include <kaboutdata.h>
+#include <KUniqueApplication>
+#include <KLocale>
+#include <KCmdLineArgs>
+#include <KAboutData>
 #include "version.h"
 #include "mainwindow.h"
 

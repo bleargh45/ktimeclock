@@ -7,12 +7,9 @@
 #ifndef KTIMECLOCK_MAINWINDOW_H
 #define KTIMECLOCK_MAINWINDOW_H
 
-#include <kmainwindow.h>
-class QPopupMenu;
-class QTimer;
-class KAccel;
-class KTimeclock;
-class KDialogBase;
+#include <KMainWindow>
+#include <Q3PopupMenu>
+
 class KTimeclockDocker;
 
 /**

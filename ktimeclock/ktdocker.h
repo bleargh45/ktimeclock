@@ -7,9 +7,10 @@
 #ifndef KTIMECLOCK_DOCKER_H
 #define KTIMECLOCK_DOCKER_H
 
-#include <ksystemtray.h>
-#include <qvector.h>
-class QPixmap;
+#include <KSystemTrayIcon>
+#include <QVector>
+#include <QPixmap>
+#include <QTimerEvent>
 
 /**
  * System tray docking widget for KTimeclock.  This widget shows an animated
@@ -18,7 +19,7 @@ class QPixmap;
  * @short   System tray docking widget for KTimeclock.
  * @author  Graham TerMarsch (graham@howlingfrog.com)
  */
-class KTimeclockDocker : public KSystemTray
+class KTimeclockDocker : public KSystemTrayIcon
 {
     Q_OBJECT
 

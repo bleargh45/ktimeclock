@@ -6,7 +6,8 @@
 
 #include "ktlistitem.h"
 #include "kttime.h"
-#include <kiconloader.h>
+#include <KIconLoader>
+#include <QPixmap>
 
 // ----------------------------------------------------------------------------
 // Function:    setDefaults ()

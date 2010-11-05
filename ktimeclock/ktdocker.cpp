@@ -5,11 +5,12 @@
 // ----------------------------------------------------------------------------
 
 #include "ktdocker.h"
-#include <kpopupmenu.h>
-#include <klocale.h>
-#include <kiconloader.h>
-#include <qtimer.h>
-#include <qpixmap.h>
+#include <KPopupMenu>
+#include <KLocale>
+#include <KIconLoader>
+#include <QTimer>
+#include <QPixmap>
+#include <QTimerEvent>
 
 // ----------------------------------------------------------------------------
 // Function:    KTimeclockDocker *QWidget* parent=0, const char* name=0)
@@ -19,7 +20,7 @@
 // Constructs a new KTimeclockDocker widget.
 // ----------------------------------------------------------------------------
 KTimeclockDocker::KTimeclockDocker (QWidget* parent, const char* name)
-    : KSystemTray( parent, name ), _timer_id(0), _frame(0)
+    : KSystemTrayIcon( parent, name ), _timer_id(0), _frame(0)
 {
     // ------------------------------------------------------------------------
     // Load up all of the pixmaps that we're going to use when animating the

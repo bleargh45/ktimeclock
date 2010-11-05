@@ -7,7 +7,7 @@
 #ifndef KTIMECLOCK_TIME_H
 #define KTIMECLOCK_TIME_H
 
-#include <qstring.h>
+#include <QString>
 
 /**
  * Helper class to do conversions of time formats from HH:MM:SS to the

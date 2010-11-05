@@ -9,20 +9,21 @@
 #include "kttime.h"
 #include "ktlistitem.h"
 #include "preferences.h"
-#include <qdom.h>
-#include <qheader.h>
-#include <qfile.h>
-#include <qstring.h>
-#include <qtextstream.h>
-#include <kapp.h>
-#include <kconfig.h>
-#include <kglobal.h>
-#include <kiconloader.h>
-#include <klocale.h>
-#include <kmessagebox.h>
-#include <kstddirs.h>
-#include <kurl.h>
-#include <kio/netaccess.h>
+#include <QDom>
+#include <Q3Header>
+#include <QFile>
+#include <QString>
+#include <Q3TextStream>
+#include <QTextOStream>
+#include <KApp>
+#include <KConfig>
+#include <KGlobal>
+#include <KIconLoader>
+#include <KLocale>
+#include <KMessageBox>
+#include <KStdDirs>
+#include <KUrl>
+#include <KIO/NetAccess>
 
 // ----------------------------------------------------------------------------
 // Function:    KTimeclock (QWidget* parent=0, const char* name=0)
@@ -32,7 +33,7 @@
 // Constructs a new KTimeclock widget.
 // ----------------------------------------------------------------------------
 KTimeclock::KTimeclock (QWidget* parent, const char* name)
-    : KListView(parent, name), _seconds_timer(NULL), _autosave_timer(NULL)
+    : K3ListView(parent, name), _seconds_timer(NULL), _autosave_timer(NULL)
 {
     // ------------------------------------------------------------------------
     // Create all of the columns that we're going to display.
@@ -148,11 +149,11 @@ void KTimeclock::saveData ()
 //              be running as a unique app, that doesn't mean that whoever else
 //              uses this class is.
     QFile file( fname_tmp );
-    if (!file.open( IO_WriteOnly )) {
+    if (!file.open( QIODevice::WriteOnly )) {
         warning( "Can't open temporary data file for output." );
         return;
     }
-    QTextStream fout( &file );
+    Q3TextStream fout( &file );
 
     // ------------------------------------------------------------------------
     // Create a new DOM document that we can stuff full of XML.
@@ -913,7 +914,7 @@ bool KTimeclock::_loadXMLData ()
     // If the file doesn't exist or we can't open it, exit early.
     // ------------------------------------------------------------------------
     if (!file.exists()) return false;
-    if (!file.open( IO_ReadOnly )) return false;
+    if (!file.open( QIODevice::ReadOnly )) return false;
 
     // ------------------------------------------------------------------------
     // Create the DOM document, slurp in the XML data file, and get the root
@@ -957,13 +958,13 @@ bool KTimeclock::_loadTextData ()
     // If the file doesn't exist or we can't open it, exit early.
     // ------------------------------------------------------------------------
     if (!file.exists()) return false;
-    if (!file.open( IO_ReadOnly )) return false;
+    if (!file.open( QIODevice::ReadOnly )) return false;
 
     // ------------------------------------------------------------------------
     // Load up the entire file line-by-line into a queue that we can process
     // recursively.
     // ------------------------------------------------------------------------
-    QTextStream finstream( &file );
+    Q3TextStream finstream( &file );
     QQueue<QString> queue;
     queue.setAutoDelete( true );
     while (!finstream.eof()) {

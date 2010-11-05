@@ -7,12 +7,11 @@
 #ifndef KTIMECLOCK_ADDEDIT_H
 #define KTIMECLOCK_ADDEDIT_H
 
-#include <kdialogbase.h>
-class QGridLayout;
-class KLineEdit;
-class KIntNumInput;
-class KDoubleNumInput;
-class KComboBox;
+#include <KDialog>
+#include <KComboBox>
+#include <KLineEdit>
+#include <KDoubleNumInput>
+#include <Q3GridLayout>
 
 /**
  * Dialog to allow us to add or edit Projects/Sub-projects within KTimeclock.
@@ -24,7 +23,7 @@ class KComboBox;
  * @short   Dialog to add/edit Projects/Sub-projects.
  * @author  Graham TerMarsch (graham@howlingfrog.com)
  */
-class DlgAddEditProject : public KDialogBase
+class DlgAddEditProject : public KDialog
 {
     Q_OBJECT
 
@@ -82,7 +81,7 @@ class DlgAddEditProject : public KDialogBase
         /**
          * Layout holding all of our widgets.
          */
-        QGridLayout*    _layout;
+        Q3GridLayout*    _layout;
 
         /**
          * Description of the project.

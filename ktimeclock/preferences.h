@@ -7,11 +7,10 @@
 #ifndef KTIMECLOCK_PREFERENCES_H
 #define KTIMECLOCK_PREFERENCES_H
 
-#include <kdialogbase.h>
-class QLabel;
-class QLineEdit;
-class KColorButton;
-class KIntNumInput;
+#include <KDialog>
+#include <QLabel>
+#include <KColorButton>
+#include <KIntNumInput>
 
 /**
  * Preferences dialog for KTimeclock.
@@ -19,7 +18,7 @@ class KIntNumInput;
  * @short   Preferences dialog for KTimeclock.
  * @author  Graham TerMarsch (graham@howlingfrog.com)
  */
-class KTimeclockConfig : public KDialogBase
+class KTimeclockConfig : public KDialog
 {
     Q_OBJECT
     public:

@@ -7,7 +7,7 @@
 #ifndef KTIMECLOCK_LISTITEM_H
 #define KTIMECLOCK_LISTITEM_H
 
-#include <qlistview.h>
+#include <Q3ListView>
 
 /**
  * Derived list view item class, with methods provided to deal with the columns
@@ -16,7 +16,7 @@
  * @short   Custom list view class for KTimeclock.
  * @author  Graham TerMarsh (graham@howlingfrog.com)
  */
-class KTimeclockListItem : public QListViewItem
+class KTimeclockListItem : public Q3ListViewItem
 {
     public:
         /**
@@ -24,8 +24,8 @@ class KTimeclockListItem : public QListViewItem
          *
          * @param   parent  QListView parent
          */
-        KTimeclockListItem (QListView* parent)
-            : QListViewItem( parent )
+        KTimeclockListItem (Q3ListView* parent)
+            : Q3ListViewItem( parent )
         {
             this->setDefaults();
         }
@@ -36,7 +36,7 @@ class KTimeclockListItem : public QListViewItem
          * @param   parent  KTimeclockListItem parent
          */
         KTimeclockListItem (KTimeclockListItem* parent)
-            : QListViewItem( parent )
+            : Q3ListViewItem( parent )
         {
             this->setDefaults();
         }

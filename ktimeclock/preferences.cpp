@@ -5,16 +5,18 @@
 // ----------------------------------------------------------------------------
 
 #include "preferences.h"
-#include <qlayout.h>
-#include <qlabel.h>
-#include <qlineedit.h>
-#include <kcolorbutton.h>
-#include <kconfig.h>
-#include <kglobal.h>
-#include <kiconloader.h>
-#include <kicontheme.h>
-#include <klocale.h>
-#include <knuminput.h>
+#include <QLayout>
+#include <QLabel>
+#include <QLineEdit>
+#include <Q3GridLayout>
+#include <Q3Frame>
+#include <KColorButton>
+#include <KConfig>
+#include <KGlobal>
+#include <KIconLoader>
+#include <KIconTheme>
+#include <KLocale>
+#include <KNumInput>
 
 // ----------------------------------------------------------------------------
 // Function:    KTimeclockConfig (QWidget* parent=0, const char* name=0)
@@ -24,7 +26,7 @@
 // Constructor.
 // ----------------------------------------------------------------------------
 KTimeclockConfig::KTimeclockConfig (QWidget* parent, const char* name)
-    : KDialogBase(IconList, i18n("Configure"), Help|Apply|Ok|Cancel, Ok, parent, name, true, true )
+    : KDialog(IconList, i18n("Configure"), Help|Apply|Ok|Cancel, Ok, parent, name, true, true )
 {
 // UNFINISHED -> Doesn't set up the default 'help' page.
     this->makeGeneralPage();
@@ -122,7 +124,7 @@ void KTimeclockConfig::makeGeneralPage ()
     // ------------------------------------------------------------------------
     // Create the frame for the page and hold onto its index.
     // ------------------------------------------------------------------------
-    QFrame* page = addPage(
+    Q3Frame* page = addPage(
                     i18n("General"),
                     i18n("General options"),
                     KGlobal::iconLoader()->loadIcon( "misc",
@@ -134,7 +136,7 @@ void KTimeclockConfig::makeGeneralPage ()
     // Create a layout within the page to manage all of the widgets we're going
     // to create.
     // ------------------------------------------------------------------------
-    QGridLayout* grid = new QGridLayout( page, 4, 2, 0, -1, "grid" );
+    Q3GridLayout* grid = new Q3GridLayout( page, 4, 2, 0, -1, "grid" );
 
     // ------------------------------------------------------------------------
     // Get a handle to the config object we're pulling values out of.
@@ -167,7 +169,7 @@ void KTimeclockConfig::makeReportPage ()
     // ------------------------------------------------------------------------
     // Create the frame for the page and hold onto its index.
     // ------------------------------------------------------------------------
-    QFrame* page = addPage(
+    Q3Frame* page = addPage(
                     i18n("Reports"),
                     i18n("Report colours"),
                     KGlobal::iconLoader()->loadIcon( "appearance",
@@ -179,7 +181,7 @@ void KTimeclockConfig::makeReportPage ()
     // Create a layout within the page to manage all of the widgets we're going
     // to create.
     // ------------------------------------------------------------------------
-    QGridLayout* grid = new QGridLayout( page, 4, 2, 0, -1, "grid" );
+    Q3GridLayout* grid = new Q3GridLayout( page, 4, 2, 0, -1, "grid" );
 
     // ------------------------------------------------------------------------
     // Get a handle to the config object we're pulling values out of.

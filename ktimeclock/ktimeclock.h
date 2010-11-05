@@ -7,12 +7,12 @@
 #ifndef KTIMECLOCK_H
 #define KTIMECLOCK_H
 
-#include <klistview.h>
-#include <qqueue.h>
-#include <qdatetime.h>
-#include <qtimer.h>
-class QDomDocument;
-class QDomElement;
+#include <K3ListView>
+#include <QQueue>
+#include <QDateTime>
+#include <QTimer>
+#include <QDomElement>
+
 class KTimeclockListItem;
 
 /**
@@ -21,7 +21,7 @@ class KTimeclockListItem;
  * @short   Main timeclock list view.
  * @author  Graham TerMarsch (graham@howlingfrog.com)
  */
-class KTimeclock : public KListView
+class KTimeclock : public K3ListView
 {
     Q_OBJECT
 

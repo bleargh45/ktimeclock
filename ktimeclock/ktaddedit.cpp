@@ -6,13 +6,14 @@
 
 #include "ktaddedit.h"
 #include "kttime.h"
-#include <klineedit.h>
-#include <knuminput.h>
-#include <qlayout.h>
-#include <qlabel.h>
-#include <qregexp.h>
-#include <klocale.h>
-#include <kcombobox.h>
+#include <KLineEdit>
+#include <KNumInput>
+#include <QLayout>
+#include <QLabel>
+#include <QRegExp>
+#include <Q3GridLayout>
+#include <KLocale>
+#include <KComboBox>
 
 // ----------------------------------------------------------------------------
 // Function:    DlgAddEditProject (QWidget* parent=0, const char* name=0)
@@ -22,7 +23,7 @@
 // Constructs a new DlgAddEditProject widget.
 // ----------------------------------------------------------------------------
 DlgAddEditProject::DlgAddEditProject (QWidget* parent, const char* name)
-    : KDialogBase(parent, name, true, QString::null, Ok|Cancel, Ok, false)
+    : KDialog(parent, name, true, QString::null, Ok|Cancel, Ok, false)
 {
     // ------------------------------------------------------------------------
     // Create a widget that we can use to lay everything out on.
@@ -33,7 +34,7 @@ DlgAddEditProject::DlgAddEditProject (QWidget* parent, const char* name)
     // ------------------------------------------------------------------------
     // Layout widget so that we can lay out everything nice and neat.
     // ------------------------------------------------------------------------
-    _layout = new QGridLayout( page, 1, 5, 5, -1, "layout" );
+    _layout = new Q3GridLayout( page, 1, 5, 5, -1, "layout" );
 
     // ------------------------------------------------------------------------
     // Text editing widget; description of the project/task.
