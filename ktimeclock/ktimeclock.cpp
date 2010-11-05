@@ -185,9 +185,9 @@ void KTimeclock::saveData ()
     // Backup the existing XML data file, and move this one into its place.
     // ------------------------------------------------------------------------
 // UNFINISHED -> Replacing existing data file with newly saved one.
-    KURL urlXMLData( fname_xml );
-    KURL urlTempfile( fname_tmp );
-    KURL urlBackup( fname_bak );
+    KUrl urlXMLData( fname_xml );
+    KUrl urlTempfile( fname_tmp );
+    KUrl urlBackup( fname_bak );
 
     KIO::NetAccess::del( urlBackup );
     KIO::NetAccess::copy( urlXMLData, urlBackup );
