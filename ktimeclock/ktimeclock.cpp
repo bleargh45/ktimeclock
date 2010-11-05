@@ -958,9 +958,8 @@ bool KTimeclock::_loadTextData ()
     // ------------------------------------------------------------------------
     QTextStream finstream( &file );
     QQueue<QString> queue;
-    queue.setAutoDelete( true );
     while (!finstream.atEnd()) {
-        queue.enqueue( new QString( finstream.readLine() ) );
+        queue.enqueue( QString( finstream.readLine() ) );
     }
     file.close();
 
@@ -990,19 +989,17 @@ void KTimeclock::_loadTextDataQueue (QQueue<QString> &queue, KTimeclockListItem*
     // ------------------------------------------------------------------------
     // Loop forever (we'll know when to kick out later on)
     // ------------------------------------------------------------------------
-    while (1) {
+    while (!queue.isEmpty()) {
         // --------------------------------------------------------------------
-        // Get the next item out of the queue.  If there isn't one, kick
-        // ourselves out of the loop.
+        // Get the next item out of the queue.
         // --------------------------------------------------------------------
-        QString* line = queue.head();
-        if (!line) { return; }
+        QString line = queue.head();
 
         // --------------------------------------------------------------------
         // Get the depth of this item and kick ourselves out if its at a lower
         // depth level than we're at.
         // --------------------------------------------------------------------
-        int currdepth = line->contains( '\t' ) - 1;
+        int currdepth = line.contains( '\t' ) - 1;
         if (currdepth <= depth) { return; }
 
         // --------------------------------------------------------------------
@@ -1011,26 +1008,26 @@ void KTimeclock::_loadTextDataQueue (QQueue<QString> &queue, KTimeclockListItem*
             // ----------------------------------------------------------------
             // Number of seconds spent so far.
             // ----------------------------------------------------------------
-        int sec_idx = line->find( '\t' );
-        QString tmp = line->mid( 0, sec_idx );
+        int sec_idx = line.find( '\t' );
+        QString tmp = line.mid( 0, sec_idx );
         int seconds = tmp.toInt();
         sec_idx ++;
             // ----------------------------------------------------------------
             // Type; project or task
             // ----------------------------------------------------------------
-        int type_idx = line->find( '\t', sec_idx );
-        QString type = line->mid( sec_idx, (type_idx - sec_idx) );
+        int type_idx = line.find( '\t', sec_idx );
+        QString type = line.mid( sec_idx, (type_idx - sec_idx) );
             // ----------------------------------------------------------------
             // Description
             // ----------------------------------------------------------------
-        int desc_idx = line->findRev( '\t' );
+        int desc_idx = line.findRev( '\t' );
         desc_idx ++;
-        QString desc = line->mid( desc_idx, (line->length() - desc_idx) );
+        QString desc = line.mid( desc_idx, (line.length() - desc_idx) );
 
         // --------------------------------------------------------------------
         // Free up the memory for this item by removing it from the queue.
         // --------------------------------------------------------------------
-        queue.remove();
+        queue.dequeue();
 
         // --------------------------------------------------------------------
         // Create a new list item for this project/task.
@@ -1059,12 +1056,11 @@ void KTimeclock::_loadTextDataQueue (QQueue<QString> &queue, KTimeclockListItem*
             // ----------------------------------------------------------------
             // If the queue is empty, abort. 
             // ----------------------------------------------------------------
-        line = queue.head();
-        if (!line) { return; }
+        if (queue.isEmpty()) { return; }
             // ----------------------------------------------------------------
             // If its deeper, recurse.  If its shallower, abort.
             // ----------------------------------------------------------------
-        int nextdepth = line->contains( '\t' ) - 1;
+        int nextdepth = line.contains( '\t' ) - 1;
         if (nextdepth > currdepth) {
             this->_loadTextDataQueue( queue, item, currdepth );
         }
