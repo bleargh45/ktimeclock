@@ -20,7 +20,6 @@
 #include <KMessageBox>
 #include <KStandardDirs>
 #include <KUrl>
-#include <KIO/NetAccess>
 
 // ----------------------------------------------------------------------------
 // Function:    KTimeclock (QWidget* parent=0)
@@ -183,16 +182,17 @@ void KTimeclock::saveData ()
     // ------------------------------------------------------------------------
     // Backup the existing XML data file, and move this one into its place.
     // ------------------------------------------------------------------------
-// UNFINISHED -> Replacing existing data file with newly saved one.
-    KUrl urlXMLData( fname_xml );
-    KUrl urlTempfile( fname_tmp );
-    KUrl urlBackup( fname_bak );
+    // ... remove old backup
+    QFile fileBackup( fname_bak );
+    fileBackup.remove();
 
-    KIO::NetAccess::del( urlBackup );
-    KIO::NetAccess::copy( urlXMLData, urlBackup );
-    KIO::NetAccess::del( urlXMLData );
-    KIO::NetAccess::copy( urlTempfile, urlXMLData );
-    KIO::NetAccess::del( urlTempfile );
+    // ... move current to backup
+    QFile fileXMLData( fname_xml );
+    fileXMLData.rename( fname_bak );
+
+    // ... move newly saved temp file to current
+    QFile fileTempFile( fname_tmp );
+    fileTempFile.rename( fname_xml );
 
     emit status( i18n("Saved data file") );
 }
