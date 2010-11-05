@@ -11,16 +11,13 @@
 #include "resource.h"
 
 #include <QString>
-#include <KAccel>
-#include <KAction>
-#include <KApp>
 #include <KConfig>
-#include <KEditToolbar>
+#include <KEditToolBar>
 #include <KGlobal>
 #include <KKeyDialog>
 #include <KLocale>
 #include <KMenuBar>
-#include <KStdAction>
+#include <KStandardAction>
 #include <KStatusBar>
 
 // ----------------------------------------------------------------------------
