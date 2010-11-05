@@ -8,8 +8,8 @@
 #define KTIMECLOCK_DOCKER_H
 
 #include <KSystemTrayIcon>
-#include <QVector>
-#include <QPixmap>
+#include <QList>
+#include <QIcon>
 #include <QTimerEvent>
 
 /**
@@ -59,10 +59,10 @@ class KTimeclockDocker : public KSystemTrayIcon
 
     private:
         /**
-         * Vector of all of the icons that we're using in the animation
+         * List of all of the icons that we're using in the animation
          * sequence.
          */
-        QVector<QPixmap>* _icons;
+        QList<QIcon> _icons;
 
         /**
          * Our timer ID that helps keep the animation running.

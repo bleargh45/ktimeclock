@@ -8,7 +8,6 @@
 #include <KLocale>
 #include <KIconLoader>
 #include <QTimer>
-#include <QPixmap>
 #include <QTimerEvent>
 
 // ----------------------------------------------------------------------------
@@ -21,23 +20,20 @@ KTimeclockDocker::KTimeclockDocker (QWidget* parent)
     : KSystemTrayIcon( parent ), _timer_id(0), _frame(0)
 {
     // ------------------------------------------------------------------------
-    // Load up all of the pixmaps that we're going to use when animating the
+    // Load up all of the icons that we're going to use when animating the
     // clock in the task bar.
     // ------------------------------------------------------------------------
-    _icons = new QVector<QPixmap>(8);
     for (int idx=0; idx<8; idx++)
     {
-        QPixmap* icon = new QPixmap;
         QString file;
         file.sprintf( "dockicon%d", idx );
-        *icon = UserIcon( file );
-        _icons->insert( idx, icon );
+        _icons.insert( idx, KSystemTrayIcon::loadIcon(file) );
     }
 
     // ------------------------------------------------------------------------
     // Start off showing the first dock icon.
     // ------------------------------------------------------------------------
-    this->setPixmap( *(*_icons)[ _frame++ ] );
+    this->setIcon( _icons.at(_frame++) );
 }
 
 // ----------------------------------------------------------------------------
@@ -47,7 +43,6 @@ KTimeclockDocker::KTimeclockDocker (QWidget* parent)
 // ----------------------------------------------------------------------------
 KTimeclockDocker::~KTimeclockDocker ()
 {
-    if (_icons) delete _icons;
 }
 
 // ----------------------------------------------------------------------------
@@ -88,10 +83,10 @@ void KTimeclockDocker::timerEvent (QTimerEvent*)
     // Redraw the icon in the dock with the next frame in the animation
     // sequence.
     // ------------------------------------------------------------------------
-    this->setPixmap( *(*_icons)[ _frame ] );
+    this->setIcon( _icons.at(_frame) );
 
     // ------------------------------------------------------------------------
     // Move onto the next frame in the animation sequence.
     // ------------------------------------------------------------------------
-    _frame = (_frame + 1) % _icons->size();
+    _frame = (_frame + 1) % _icons.size();
 }
