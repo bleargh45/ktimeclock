@@ -875,8 +875,8 @@ void KTimeclock::_setAutosaveTimer ()
     // Get the number of minutes between auto-saves.
     // ------------------------------------------------------------------------
     KConfig* cfg = KGlobal::config();
-    cfg->setGroup( "General" );
-    int minutes = KGlobal::config()->readNumEntry( "autosave" );
+    KConfigGroup generalGroup(cfg, "General");
+    int minutes = generalGroup.readEntry( "autosave" );
 
     // ------------------------------------------------------------------------
     // If we were given a value to auto-save with, set up a timer to go off

@@ -138,13 +138,13 @@ void KTimeclockWindow::updateState (const QString state)
 // ----------------------------------------------------------------------------
 void KTimeclockWindow::saveGeometry ()
 {
-    KConfig &cfg = *KGlobal::config();
-    cfg.setGroup( "Main Window Geometry" );
-    cfg.writeEntry( "Width",    this->width() );
-    cfg.writeEntry( "Height",   this->height() );
-    cfg.writeEntry( "Xpos",     this->x() );
-    cfg.writeEntry( "Ypos",     this->y() );
-    cfg.sync();
+    KConfig* cfg = KGlobal::config();
+    KConfigGroup windowGroup(cfg, "Main Window Geometry");
+    windowGroup.writeEntry( "Width",    this->width() );
+    windowGroup.writeEntry( "Height",   this->height() );
+    windowGroup.writeEntry( "Xpos",     this->x() );
+    windowGroup.writeEntry( "Ypos",     this->y() );
+    windowGroup.config()->sync();
 }
 
 // ----------------------------------------------------------------------------
@@ -155,12 +155,12 @@ void KTimeclockWindow::saveGeometry ()
 // ----------------------------------------------------------------------------
 void KTimeclockWindow::loadGeometry ()
 {
-    KConfig &cfg = *KGlobal::config();
-    cfg.setGroup( "Main Window Geometry" );
-    int w = cfg.readNumEntry( "Width", 620 );
-    int h = cfg.readNumEntry( "Height", 400 );
-    int x = cfg.readNumEntry( "Xpos", 0 );
-    int y = cfg.readNumEntry( "Ypos", 0 );
+    KConfig* cfg = KGlobal::config();
+    KConfigGroup windowGroup(cfg, "Main Window Geometry");
+    int w = windowGroup.readEntry( "Width", 620 );
+    int h = windowGroup.readEntry( "Height", 400 );
+    int x = windowGroup.readEntry( "Xpos", 0 );
+    int y = windowGroup.readEntry( "Ypos", 0 );
 
     // ------------------------------------------------------------------------
     // Adjust the height/width based on our size hint.
