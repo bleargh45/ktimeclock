@@ -14,13 +14,12 @@
 #include <QString>
 #include <Q3TextStream>
 #include <QTextOStream>
-#include <KApp>
 #include <KConfig>
 #include <KGlobal>
 #include <KIconLoader>
 #include <KLocale>
 #include <KMessageBox>
-#include <KStdDirs>
+#include <KStandardDirs>
 #include <KUrl>
 #include <KIO/NetAccess>
 
