@@ -147,7 +147,7 @@ void KTimeclock::saveData ()
 //              uses this class is.
     QFile file( fname_tmp );
     if (!file.open( QIODevice::WriteOnly )) {
-        warning( "Can't open temporary data file for output." );
+        qWarning( "Can't open temporary data file for output." );
         return;
     }
     Q3TextStream fout( &file );
