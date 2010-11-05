@@ -1,0 +1,13 @@
+Begin3
+Title:          KTimeclock 
+Version:        2.0.3
+Entered-date:   May 6, 2004
+Description:    Task-based timeclock for KDE-3.x
+Keywords:       timeclock project task ktimeclock KDE karm
+Author:         Graham TerMarsch <graham@howlingfrog.com> 
+Maintained-by:  Graham TerMarsch <graham@howlingfrog.com> 
+Primary-site:   http://www.howlingfrog.com/opensource/ktimeclock/
+Home-page:      http://www.howlingfrog.com/opensource/ktimeclock/
+Platforms:      Linux and other Unices
+Copying-policy: Artistic License
+End

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Time Clock
+GenericName=Personal Time Tracker
+Exec=ktimeclock -caption "%c" %i %m
+Icon=ktimeclock
+DocPath=ktimeclock/index.html
+Type=Application
+Terminal=false
+X-KDE-StartupNotify=true
+Categories=Qt;KDE;Office;Calendar;

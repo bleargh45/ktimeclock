@@ -1,0 +1,763 @@
+<?xml version="1.0" ?>
+<!DOCTYPE book PUBLIC  "-//KDE//DTD DocBook XML V4.1-Based Variant V1.0//EN" "dtd/kdex.dtd" [
+ <!ENTITY ktimeclock  "<application>KTimeclock</application>">
+ <!ENTITY license     "<ulink url='common/artistic-license.html'>Artistic License</ulink>">
+ <!ENTITY kappname "&ktimeclock;">
+ <!ENTITY % English "INCLUDE" > <!-- change language only here -->
+ <!ENTITY % addindex "IGNORE">
+]>
+
+<!-- ================================================================ -->
+<!-- The language must be changed in the <book> tag for translations. -->
+<!-- ================================================================ -->
+<book id="ktimeclock" lang="&language;">
+
+<!-- ================================================================ -->
+<!-- Meta-information for the document.                               -->
+<!-- ================================================================ -->
+<bookinfo>
+  <title>The &ktimeclock; Handbook</title>
+  <authorgroup>
+    <author>
+      <firstname>Graham</firstname>
+      <surname>TerMarsch</surname>
+      <affiliation><address><email>graham@howlingfrog.com</email></address></affiliation>
+    </author>
+  </authorgroup>
+
+  <!-- ================================================================ -->
+  <!-- Copyright and legal notices for the documentation.               -->
+  <!-- ================================================================ -->
+  <copyright>
+    <year>1999-2002</year>
+    <holder>Graham TerMarsch</holder>
+  </copyright>
+
+  <legalnotice>&underArtisticLicense;</legalnotice>
+
+  <!-- ================================================================ -->
+  <!-- Date and version information for the _documentation_.            -->
+  <!-- Date should be in formation of DD/MM/YYYY, and the version       -->
+  <!-- number should be in the format of Major.Minor.Lesser             -->
+  <!-- ================================================================ -->
+  <date>08/05/2002</date>
+  <releaseinfo>1.10</releaseinfo>
+
+  <!-- ================================================================ -->
+  <!-- Abstract about this handbook.                                    -->
+  <!-- ================================================================ -->
+  <abstract>
+    <para>
+      This Handbook describes &ktimeclock; Version 2.0.3.
+    </para>
+  </abstract>
+
+  <!-- ================================================================ -->
+  <!-- Keywords for indexing by search engines.                         -->
+  <!-- ================================================================ -->
+  <keywordset>
+    <keyword>KDE</keyword>
+    <keyword>KTimeclock</keyword>
+    <keyword>timeclock</keyword>
+  </keywordset>
+</bookinfo>
+
+<!-- ================================================================ -->
+<!-- Documentation contents begin here.                               -->
+<!-- Each chapter should be labelled with the 'id' attribute; this    -->
+<!-- allows for easy reference from other chapters and also makes     -->
+<!-- maintenance of the generated files easier.                       -->
+<!-- ================================================================ -->
+
+<!-- ================================================================ -->
+<!-- Introduction chapter.                                            -->
+<!-- ================================================================ -->
+<chapter id="introduction">
+  <title>Introduction</title>
+  <para>
+    &ktimeclock; is designed to be a personal timeclock to help keep track of
+    how much time is spent working on various projects and the tasks that they
+    involve.  It originally evolved out of my own use of
+    <application>KArm</application> and finding that although it was useful,
+    there were many things that I would have done differently to make it easier
+    to work with larger volumes of projects and tasks.
+  </para>
+  <para>
+    Simply set up a series of projects, each of which can contain multiple
+    sub-projects and tasks.  Select the current task that you're working on,
+    start the clock, and &ktimeclock; will track the time you've spent working
+    on that task.
+  </para>
+</chapter>
+
+<!-- ================================================================ -->
+<!-- Usage chapter.                                                   -->
+<!-- ================================================================ -->
+<chapter id="using-ktimeclock">
+  <title>Using KTimeclock</title>
+  <sect1 id="understanding-projects">
+    <title>Understanding projects and tasks</title>
+    <para>
+      In &ktimeclock;, there is the notion of a "Project", a "Sub-Project", and
+      "Tasks".  Conceptually, you can think of them similarly to directories,
+      sub-directories, and files respectively.  In the main &ktimeclock;
+      display, a Project always appears at the upper-most level in the
+      tree-view.  Projects may contain one or more Sub-Projects or Tasks, and
+      Sub-Projects may also contain one more more Sub-Projects or Tasks (feel
+      free to recurse here at your own leisure).
+    </para>
+    <para>
+      By using Projects and Sub-Projects, your Tasks (and other Sub-Projects)
+      can be grouped together into their own groups.  This grouping should help
+      make it easier to work on projects where there are a large number of
+      individual tasks to be completed, by breaking them up amongst the various
+      stages of the project.
+    </para>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="window.png" format="PNG" />
+      </imageobject>
+      <caption>
+          <para>Main KTimeclock display</para>
+      </caption>
+    </mediaobject>
+  </sect1>
+
+  <sect1 id="billable-rates">
+    <title>Understanding billable rates</title>
+    <para>
+      Within &ktimeclock;, any Project/Sub-Project/Task can have a billable
+      rate associated with it.  As time is tracked against a given task, the
+      display will show you not only how much time has been tracked, but also
+      how much money that relates to at the given billable rate.
+    </para>
+    <para>
+      &ktimeclock; also gives you the flexibility to make the billable rate for
+      any Sub-Project/Task relative to the billable rate for the
+      Project/Sub-Project that it is within.  This allows you to do things such
+      as define a major project and have a single task within it which is
+      charged at a different rate (e.g. double-time).
+    </para>
+    <para>
+      When configuring the billable rate for a given Project/Sub-Project/Task,
+      there are six different modifiers that can be used:
+    </para>
+    <variablelist>
+      <varlistentry>
+        <term>Parent's rate</term>
+        <listitem>
+          <para>
+            Billable rate is inherited from the parent item.  This is the
+            default value for all items as they're created.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>=</term>
+        <listitem>
+          <para>
+            Explicitly sets the billable rate for the given item.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>+</term>
+        <listitem>
+          <para>
+            Billable rate is equal to the parents billable rate PLUS the
+            specified amount.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>-</term>
+        <listitem>
+          <para>
+            Billable rate is equal to the parents billable rate MINUS the
+            specified amount.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>*</term>
+        <listitem>
+          <para>
+            Billable rate is equal to the parents billable rate MULTIPLIED BY
+            the specified amount.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>/</term>
+        <listitem>
+          <para>
+            Billable rate is equal to the parents billable rate DIVIDED BY the
+            specified amount.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </sect1>
+
+  <sect1 id="creating-projects">
+    <title>Creating a new top-level project</title>
+    <para>
+      To create a new top-level Project, select "Tasks | New project" from the
+      menu.  You will then be presented with a new window asking for a
+      description of the Project you wish to create, and the billable rate for
+      this Project.
+    </para>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="add_project.png" format="PNG" />
+      </imageobject>
+      <caption>
+        <para>Add Project dialog</para>
+      </caption>
+    </mediaobject>
+  </sect1>
+
+  <sect1 id="creating-sub-projects">
+    <title>Creating a sub-project</title>
+    <para>
+      To create a new Sub-Project, first highlight the Project/Sub-Project that
+      you wish to create the new Sub-Project in.  Then select "Tasks | New
+      sub-project" from the menu.  You will then be presented with the same
+      "Add Project" dialog that was shown in the previous section
+      (<link linkend="creating-projects">Creating a new top-level
+      project</link>).
+    </para>
+  </sect1>
+
+  <sect1 id="creating-tasks">
+    <title>Creating tasks</title>
+    <para>
+      To create a new Task, first highlight a Project/Sub-Project that you wish
+      to create the Task in.  Then select "Tasks | New task" from the menu.
+      You will then be presented with a new window asking for a description of
+      the task you wish to create, the billable rate, and any time that you've
+      already spent working on this Task.
+    </para>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="add_task.png" format="PNG" />
+      </imageobject>
+      <caption>
+        <para>Add Task dialog</para>
+      </caption>
+    </mediaobject>
+  </sect1>
+
+  <sect1 id="editing-items">
+    <title>Editing projects/tasks</title>
+    <para>
+      To edit a Project, Sub-Project, or Task, highlight the item which you
+      wish to edit, and select "Tasks | Edit task" from the menu.  You will
+      then be shown a dialog in which you can edit the information relating to
+      the given Project/Task.
+    </para>
+  </sect1>
+
+  <sect1 id="deleting-items">
+    <title>Deleting projects/tasks</title>
+    <para>
+      To delete a Project, Sub-Project, or Task, highlight the item that you
+      wish to delete, and select "Tasks | Delete task" from the menu.  You will
+      be asked to confirm that you wish to delete this item from the tree-view.
+      NOTE, that deleting any Project or Sub-Project will also delete any child
+      Sub-Projects or Tasks that the Project might contain.
+    </para>
+  </sect1>
+
+  <sect1 id="clearing-item">
+    <title>Clearing the time for a project/task</title>
+    <para>
+      To clear the time associated with a specific Task, highlight the Task
+      that you wish to clear the time for and select "Tasks | Clear task" from
+      the menu.  This will clear both the time spent on this Task in this
+      session as well as the total time spent on this Task.  You will not be
+      asked to confirm this action.
+    </para>
+  </sect1>
+
+  <sect1 id="clearing-all-items">
+    <title>Clearing the time for all projects/tasks</title>
+    <para>
+      To clear the time associated with all of the Tasks in the tree-view,
+      select "Tasks | Clear all tasks" item from the menu.  You will be asked
+      to confirm that you wish to clear the time for all of the tasks in the
+      tree-view.  Once confirmed, the session time and total time spent for all
+      items in the tree-view will be reset to zero.
+    </para>
+  </sect1>
+
+  <sect1 id="reset-session-time">
+    <title>Resetting session time</title>
+    <para>
+      To reset the count of time spent in a particular session, select "Tasks |
+      Reset session" from the menu.  This will clear the session times for all
+      tasks in the tree-view.  NOTE, that this does NOT clear the total time
+      spent for any of the tasks, it only resets the count of how much time was
+      spent on the Tasks in this session.
+    </para>
+  </sect1>
+</chapter>
+
+<!-- ================================================================ -->
+<!-- Customization chapter.                                           -->
+<!-- ================================================================ -->
+<chapter id="customizing-ktimeclock">
+  <title>Customizing KTimeclock</title>
+
+  <sect1 id="configure-general">
+    <title>General</title>
+    <para>
+      Ok, so there aren't too many configuration options in here yet.  The
+      following configuration options are present though:
+    </para>
+    <variablelist>
+      <varlistentry>
+        <term>Autosave every 'n' minutes</term>
+        <listitem>
+          <para>
+            Sets the number of minutes between auto-saves of the timeclock data
+            file.  By setting the value of the auto-save timer to zero it can
+            be disabled.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="configure-general.png" format="PNG" />
+      </imageobject>
+      <caption>
+        <para>General configuration dialog</para>
+      </caption>
+    </mediaobject>
+  </sect1>
+
+  <sect1 id="configure-reports">
+    <title>Reports</title>
+    <para>
+      As of this writing, this page in the configuration dialog is primarily a
+      placeholder for things to come.  The current release of &ktimeclock; does
+      not have any reports which can be run (yet).  Reporting was a much
+      requested feature and is currently in the works; this page in the
+      configuration dialog is simply to let people know that its coming and
+      will be present in the next release.
+    </para>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="configure-reports.png" format="PNG" />
+      </imageobject>
+      <caption>
+        <para>Reports configuration dialog (unused)</para>
+      </caption>
+    </mediaobject>
+  </sect1>
+</chapter>
+
+<!-- ================================================================ -->
+<!-- Features / Future features chapter.                              -->
+<!-- ================================================================ -->
+<chapter id="ktimeclock-features">
+  <title>KTimeclock features</title>
+
+  <sect1 id="features">
+    <title>Features</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          Task based time tracking, with billable rates which can be associated
+          with any given task/project.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Tracks time to the nearest second.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Hide-able into system tray.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          XML-based data file.  Support for loading of data files from pervious
+          versions of &ktimeclock; is provided.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+
+  <sect1 id="future-features">
+    <title>Future features</title>
+    <para>
+      Since the last KDE-1.x release of &ktimeclock; there have been a number
+      of requests for features.  This list includes those which I plan to
+      implement but have not yet had a chance to get around to.
+      <variablelist>
+        <varlistentry>
+          <term>Reporting</term>
+          <listitem>
+            <para>
+              This is probably the most often requested feature of
+              &ktimeclock;.  I am currently working on this feature, but I need
+              to get a KDE-2.0 version of &ktimeclock; out quickly so this one
+              missed the deadline.
+            </para>
+            <para>
+              For users out there who don't want to wait for the next version,
+              and who know how to work with Perl, contact me and I'll send you
+              some Perl scripts which I've been using here as prototypes for
+              some of the reports.  Knowledge of programming Perl is a
+              requirement; you've got to edit a few things in the scripts in
+              order to get them working properly in your own installation.
+            </para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </para>
+  </sect1>
+</chapter>
+
+<!-- ================================================================ -->
+<!-- Frequently Asked Questions (FAQ chapter).                        -->
+<!-- ================================================================ -->
+<chapter id="faq">
+  <title>Frequently asked questions (FAQ)</title>
+  <qandaset>
+    <qandaentry>
+      <question>
+        <para>
+          How can I track time for more than one task simultaneously?
+        </para>
+      </question>
+      <answer>
+        <para>
+          You can't.  I've had a few users request this feature so that they
+          can easily keep track of their time while working on more than one
+          project simultaneously, but at this point its not something you can
+          do with &ktimeclock;.  If this is a feature that you're seriously
+          interested in do contact the author and let him know; if enough
+          people request it I might just get around to implementing it.
+        </para>
+      </answer>
+    </qandaentry>
+  </qandaset>
+</chapter>
+
+<!-- ================================================================ -->
+<!-- Credits/Thanks Chapter.                                          -->
+<!-- ================================================================ -->
+<chapter id="credits">
+  <title>Credits</title>
+  <para>
+    &ktimeclock;
+  </para>
+  <para>
+    Copyright 1998-2002,
+    Graham TerMarsch <email>graham@howlingfrog.com</email>
+  </para>
+  <para>
+    Contributors:
+    <itemizedlist>
+      <listitem>
+        <para>Mike Smith <email>mike@rheostatic.com</email></para>
+      </listitem>
+    </itemizedlist>
+  </para>
+  <para>
+    Translations done by:
+    <itemizedlist>
+      <listitem>
+        <para>
+          Nobody; there aren't any translations yet.  If you'd like to
+          volunteer to help out with translations, please contact the author.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </para>
+  <para>
+    Thanks to:
+    <itemizedlist>
+      <listitem>
+        <para>Tobias Besch</para>
+      </listitem>
+    </itemizedlist>
+    for providing bug-reports, suggestions, beta-testing, and for the patience
+    to help me work through numerous little glitches.
+  </para>
+</chapter>
+
+<!-- ================================================================ -->
+<!-- License Agreement Chapter.                                       -->
+<!-- ================================================================ -->
+<chapter id="license">
+  <title>License</title>
+  <para>
+    &ktimeclock;
+  </para>
+  <para>
+    Copyright 1998-2002,
+    Graham TerMarsch <email>graham@howlingfrog.com</email>
+  </para>
+  &underArtisticLicense;
+</chapter>
+
+<!-- ================================================================ -->
+<!-- Revision history appendix; the _software_ revisions.             -->
+<!-- ================================================================ -->
+<appendix id="revhistory">
+  <title>&ktimeclock; Revision History</title>
+
+  <sect1 id="ktimeclock-2.0.3">
+    <title>v2.0.3</title>
+    <para>
+      Released May 6, 2004
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          Added checks for lost timer ticks due to concerns from users that
+          KTimeclock was losing seconds.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+
+  <sect1 id="ktimeclock-2.0.2">
+    <title>v2.0.2</title>
+    <para>
+      Released May 8, 2002
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          Upgraded the build/admin scripts so that KTimeclock will now build
+          against KDE-3.x.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+
+  <sect1 id="ktimeclock-2.0.1">
+    <title>v2.0.1</title>
+    <para>
+      Released Jan 29, 2002
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          Upgraded the build/admin scripts so that KTimeclock will now build
+          properly against newer Linux distributions using KDE-2.2.x.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Fixed a bug which would cause &ktimeclock; to not always create
+          the data directory properly in which it tries to store its XML
+          data file.  This would manifest itself as having created some
+          tasks/projects in &ktimeclock; and them not being present again
+          when you reloaded &ktimeclock;.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+
+  <sect1 id="ktimeclock-2.0.0">
+    <title>v2.0.0</title>
+    <para>
+      Released Jan 13, 2001
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          Rebuilt for KDE-2.x.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          File format changed to an XML based data file.  Support for loading
+          of legacy text-based data files from previous versions of
+          &ktimeclock; provided.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          &ktimeclock; now periodically auto-saves the data file.  The timeout
+          period for how often the data file is auto-saved is configurable.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          License changed from QPL to the Artistic License.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+
+  <sect1 id="ktimeclock-0.0.6">
+    <title>v0.0.6</title>
+    <para>
+      Released Sept 22, 2000
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          Fixed bug which caused &ktimeclock; to segfault and dump core on
+          exit.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Fixed bug which caused the data file to not be created if the
+          "File | Quit" menu item was used to exit the application.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Now saves/restores window size/position.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+
+  <sect1 id="ktimeclock-0.0.5">
+    <title>v0.0.5</title>
+    <para>
+      Released Feb 18, 2000
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          Fixed several configuration/compilation bugs from the last release
+          of &ktimeclock;.  &ktimeclock; should now build properly on SuSE
+          Linux systems.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+
+  <sect1 id="ktimeclock-0.0.4">
+    <title>v0.0.4</title>
+    <para>
+      Released Feb 7, 2000
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          Added support for docking into KPanel.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Fixed max limit of 59 hours for any task.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Changed licensing from GPL to QPL.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+
+  <sect1 id="ktimeclock-0.0.3">
+    <title>v0.0.3</title>
+    <para>
+      Released June 10, 1999
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          Added ability to clear the time associated with a given item, as
+          well as the ability to clear the time associated with ALL of the
+          items.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Moved main widget over to KTMainWindow from KTopLevelWidget.
+          Doesn't really do much for us yet as we still don't have any real
+          "state" other than the project list, but the support for session
+          management is at least now available when I get there.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+
+  <sect1 id="ktimeclock-0.0.2">
+    <title>v0.0.2</title>
+    <para>
+      Released Nov 16, 1998
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          Initial public release.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </sect1>
+</appendix>
+
+<!-- ================================================================ -->
+<!-- Installation appendix.                                           -->
+<!-- ================================================================ -->
+<appendix id="installation">
+  <title>Installation</title>
+  <sect1 id="getting-ktimeclock">
+    <title>How to obtain KTimeclock</title>
+    <para>
+      &ktimeclock; can be found at
+      <ulink url="http://www.howlingfrog.com/opensource/ktimeclock/">http://www.howlingfrog.com/opensource/ktimeclock/</ulink>,
+      the main &ktimeclock; home page.
+    </para>
+  </sect1>
+
+  <sect1 id="requirements">
+    <title>Requirements</title>
+    <para>
+      In order to successfully use &ktimeclock;, you need the KDE 3.x libraries
+      and base installation.  No other special software or libraries are
+      required in order to use &ktimeclock;.
+    </para>
+  </sect1>
+
+  <sect1 id="compilation">
+    <title>Compilation and installation</title>
+    <para>
+      In order to compile and install &ktimeclock; on your system, type the
+      following in the base directory of the &ktimeclock; distribution:
+      <screen width="40">
+        <prompt>%</prompt> <userinput>./configure</userinput>
+        <prompt>%</prompt> <userinput>make</userinput>
+        <prompt>%</prompt> <userinput>make install</userinput>
+      </screen>
+    </para>
+    <para>
+      Since &ktimeclock; uses autoconf and automake you should not have any
+      troubles compiling it.  Should you run into problems please report them
+      to the author
+      (<ulink url="mailto:graham@howlingfrog.com">Graham TerMarsch</ulink>).
+    </para>
+    <para>
+      There are several binary distributions of &ktimeclock; available from the
+      &ktimeclock; home page; if you have troubles compiling a version for your
+      system you might want to check there and see if a binary is available.
+      Contributed binaries/packages are welcome; if you manage to get
+      &ktimeclock; to compile on a system for which there is no binary
+      available please contact the author.
+    </para>
+  </sect1>
+</appendix>
+
+<!-- ================================================================ -->
+<!--                                                                  -->
+<!-- ================================================================ -->
+&documentation.index;
+
+</book>
