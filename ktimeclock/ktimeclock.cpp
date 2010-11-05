@@ -12,8 +12,7 @@
 #include <Q3Header>
 #include <QFile>
 #include <QString>
-#include <Q3TextStream>
-#include <QTextOStream>
+#include <QTextStream>
 #include <KConfig>
 #include <KGlobal>
 #include <KIconLoader>
@@ -150,7 +149,7 @@ void KTimeclock::saveData ()
         qWarning( "Can't open temporary data file for output." );
         return;
     }
-    Q3TextStream fout( &file );
+    QTextStream fout( &file );
 
     // ------------------------------------------------------------------------
     // Create a new DOM document that we can stuff full of XML.
@@ -619,7 +618,7 @@ void KTimeclock::secondTimerEvent() {
         // Show an error to the user.
         QString msg;
 //        QTextOStream(&msg) << "Lost " << lost_ticks << " timer ticks!";
-QTextOStream(&msg) << "Lost " << lost_ticks << " timer ticks!" << "\n"
+QTextStream(&msg) << "Lost " << lost_ticks << " timer ticks!" << "\n"
   << "_last_tick[" << _last_tick.toString() << "]" << "\n"
   << "currentTime[" << timeNow.toString() << "]" << "\n\n";
 _last_tick = QTime::currentTime(); // messagebox is synchronous; update or we show infinitely
@@ -961,10 +960,10 @@ bool KTimeclock::_loadTextData ()
     // Load up the entire file line-by-line into a queue that we can process
     // recursively.
     // ------------------------------------------------------------------------
-    Q3TextStream finstream( &file );
+    QTextStream finstream( &file );
     QQueue<QString> queue;
     queue.setAutoDelete( true );
-    while (!finstream.eof()) {
+    while (!finstream.atEnd()) {
         queue.enqueue( new QString( finstream.readLine() ) );
     }
     file.close();
