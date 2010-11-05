@@ -71,15 +71,15 @@ void KTimeclockConfig::slotApply ()
     // ------------------------------------------------------------------------
     // "General" options.
     // ------------------------------------------------------------------------
-    cfg->setGroup( "General" );
-    cfg->writeEntry( "autosave", _general.autosaveNum->value() );
+    KConfigGroup generalGroup( cfg, "General" );
+    generalGroup->writeEntry( "autosave", _general.autosaveNum->value() );
 
     // ------------------------------------------------------------------------
     // "Report" options.
     // ------------------------------------------------------------------------
-    cfg->setGroup( "Report" );
-    cfg->writeEntry( "background", _report.backgroundCol.name() );
-    cfg->writeEntry( "text", _report.textCol.name() );
+    KConfigGroup reportGroup( cfg, "Report" );
+    reportGroup->writeEntry( "background", _report.backgroundCol.name() );
+    reportGroup->writeEntry( "text", _report.textCol.name() );
 
     // ------------------------------------------------------------------------
     // Done saving, sync the changes to disk.
@@ -141,7 +141,7 @@ void KTimeclockConfig::makeGeneralPage ()
     // Get a handle to the config object we're pulling values out of.
     // ------------------------------------------------------------------------
     KConfig* cfg = KGlobal::config();
-    cfg->setGroup( "General" );
+    KConfigGroup generalGroup(cfg, "General");
 
     // ------------------------------------------------------------------------
     // Create the widgets.
@@ -154,7 +154,7 @@ void KTimeclockConfig::makeGeneralPage ()
     grid->addWidget( _general.autosaveLbl, 0, 0 );
 
     _general.autosaveNum = new KIntNumInput( page );
-    _general.autosaveNum->setValue( cfg->readNumEntry( "autosave" ) );
+    _general.autosaveNum->setValue( generalGroup->readEntry( "autosave", 1 ) );
     grid->addWidget( _general.autosaveNum, 0, 1 );
 }
 
@@ -186,7 +186,7 @@ void KTimeclockConfig::makeReportPage ()
     // Get a handle to the config object we're pulling values out of.
     // ------------------------------------------------------------------------
     KConfig* cfg = KGlobal::config();
-    cfg->setGroup( "Report" );
+    KConfigGroup reportGroup( cfg, "Report" );
 
     // ------------------------------------------------------------------------
     // Create the widgets.
@@ -201,7 +201,7 @@ void KTimeclockConfig::makeReportPage ()
     _report.backgroundBtn = new KColorButton( page, "_report.backgroundBtn" );
     connect( _report.backgroundBtn, SIGNAL(changed(const QColor&)),
              this, SLOT(slotReportBackgroundChanged(const QColor&)) );
-    _report.backgroundBtn->setColor( cfg->readEntry("background", "#FFFFFF") );
+    _report.backgroundBtn->setColor( reportGroup->readEntry("background", "#FFFFFF") );
     grid->addWidget( _report.backgroundBtn, 0, 1 );
         // --------------------------------------------------------------------
         // Report text colour
@@ -213,6 +213,6 @@ void KTimeclockConfig::makeReportPage ()
     _report.textBtn = new KColorButton( page, "_report.textBtn" );
     connect( _report.textBtn, SIGNAL(changed(const QColor&)),
              this, SLOT(slotReportTextChanged(const QColor&)) );
-    _report.textBtn->setColor( cfg->readEntry("text", "#000000") );
+    _report.textBtn->setColor( reportGroup->readEntry("text", "#000000") );
     grid->addWidget( _report.textBtn, 1, 1 );
 }
