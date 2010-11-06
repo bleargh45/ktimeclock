@@ -244,46 +244,72 @@ void KTimeclockWindow::initMenus ()
     // ------------------------------------------------------------------------
     // Our own custom menu items
     // ------------------------------------------------------------------------
-    new KAction( i18n("&Start timer"), "1rightarrow",
-                 Qt::CTRL+Qt::Key_T,
-                 _timeclock, SLOT(start()),
-                 actionCollection(), "start" );
-    new KAction( i18n("S&top timer"), "stop",
-                 Qt::CTRL+Qt::ALT+Qt::Key_T,
-                 _timeclock, SLOT(stop()),
-                 actionCollection(), "stop" );
-    new KAction( i18n("New &project"), "folder_new",
-                 Qt::CTRL+Qt::Key_P,
-                 _timeclock, SLOT(addProject()),
-                 actionCollection(), "addproject" );
-    new KAction( i18n("New &sub-project"), "folder_new",
-                 Qt::CTRL+Qt::ALT+Qt::Key_P,
-                 _timeclock, SLOT(addSubProject()),
-                 actionCollection(), "addsubproject" );
-    new KAction( i18n("&New task"), "filenew",
-                 Qt::CTRL+Qt::Key_N,
-                 _timeclock, SLOT(addTask()),
-                 actionCollection(), "addtask" );
-    new KAction( i18n("&Edit task"), "edit",
-                 Qt::CTRL+Qt::Key_E,
-                 _timeclock, SLOT(editItem()),
-                 actionCollection(), "edititem" );
-    new KAction( i18n("&Delete task"), "editdelete",
-                 Qt::CTRL+Qt::Key_D,
-                 _timeclock, SLOT(deleteItem()),
-                 actionCollection(), "deleteitem" );
-    new KAction( i18n("&Clear task"),
-                 Qt::CTRL+Qt::Key_C,
-                 _timeclock, SLOT(clearTask()),
-                 actionCollection(), "cleartask" );
-    new KAction( i18n("Clear &all tasks"),
-                 Qt::CTRL+Qt::Key_A,
-                 _timeclock, SLOT(clearAllTasks()),
-                 actionCollection(), "clearalltasks" );
-    new KAction( i18n("Reset &session"),
-                 Qt::CTRL+Qt::Key_R,
-                 _timeclock, SLOT(clearSession()),
-                 actionCollection(), "clearsession" );
+    KAction* startAction = new KAction(this);
+    startAction->setText(i18n("&Start timer"));
+    startAction->setIcon(KIcon("1rightarrow"));
+    startAction->setShortcut(Qt::CTRL + Qt::Key_T);
+    actionCollection()->addAction("start", startAction);
+    connect(startAction, SIGNAL(triggered(bool)), _timeclock, SLOT(start()));
+
+    KAction* stopAction = new KAction(this);
+    stopAction->setText(i18n("S&top timer"));
+    stopAction->setIcon(KIcon("stop"));
+    stopAction->setShortcut(Qt::CTRL + Qt::ALT + Qt::Key_T);
+    actionCollection()->addAction("stop", stopAction);
+    connect(stopAction, SIGNAL(triggered(bool)), _timeclock, SLOT(stop()));
+
+    KAction* newProjectAction = new KAction(this);
+    newProjectAction->setText(i18n("New &project"));
+    newProjectAction->setIcon(KIcon("folder_new"));
+    newProjectAction->setShortcut(Qt::CTRL + Qt::Key_P);
+    actionCollection()->addAction("addproject", newProjectAction);
+    connect(newProjectAction, SIGNAL(triggered(bool)), _timeclock, SLOT(addProject()));
+
+    KAction* newSubProjectAction = new KAction(this);
+    newSubProjectAction->setText(i18n("New &sub-project"));
+    newSubProjectAction->setIcon(KIcon("folder_new"));
+    newSubProjectAction->setShortcut(Qt::CTRL + Qt::ALT + Qt::Key_P);
+    actionCollection()->addAction("addsubproject", newSubProjectAction);
+    connect(newSubProjectAction, SIGNAL(triggered(bool)), _timeclock, SLOT(addSubProject()));
+
+    KAction* newTaskAction = new KAction(this);
+    newTaskAction->setText(i18n("&New task"));
+    newTaskAction->setIcon(KIcon("filenew"));
+    newTaskAction->setShortcut(Qt::CTRL + Qt::Key_N);
+    actionCollection()->addAction("addtask", newTaskAction);
+    connect(newTaskAction, SIGNAL(triggered(bool)), _timeclock, SLOT(addTask()));
+
+    KAction* editTaskAction = new KAction(this);
+    editTaskAction->setText(i18n("&Edit task"));
+    editTaskAction->setIcon(KIcon("edit"));
+    editTaskAction->setShortcut(Qt::CTRL + Qt::Key_E);
+    actionCollection()->addAction("edititem", editTaskAction);
+    connect(editTaskAction, SIGNAL(triggered(bool)), _timeclock, SLOT(editItem()));
+
+    KAction* deleteTaskAction = new KAction(this);
+    deleteTaskAction->setText(i18n("&Delete task"));
+    deleteTaskAction->setIcon(KIcon("editdelete"));
+    deleteTaskAction->setShortcut(Qt::CTRL + Qt::Key_D);
+    actionCollection()->addAction("deleteitem", deleteTaskAction);
+    connect(deleteTaskAction, SIGNAL(triggered(bool)), _timeclock, SLOT(deleteItem()));
+
+    KAction* clearTaskAction = new KAction(this);
+    clearTaskAction->setText(i18n("&Clear task"));
+    clearTaskAction->setShortcut(Qt::CTRL + Qt::Key_C);
+    actionCollection()->addAction("cleartask", clearTaskAction);
+    connect(clearTaskAction, SIGNAL(triggered(bool)), _timeclock, SLOT(clearTask()));
+
+    KAction* clearAllTasksAction = new KAction(this);
+    clearAllTasksAction->setText(i18n("Clear &all tasks"));
+    clearAllTasksAction->setShortcut(Qt::CTRL + Qt::Key_A);
+    actionCollection()->addAction("clearalltasks", clearAllTasksAction);
+    connect(clearAllTasksAction, SIGNAL(triggered(bool)), _timeclock, SLOT(clearAllTasks()));
+
+    KAction* resetSessionAction = new KAction(this);
+    resetSessionAction->setText(i18n("Reset &session"));
+    resetSessionAction->setShortcut(Qt::CTRL + Qt::Key_R);
+    actionCollection()->addAction("clearsession", resetSessionAction);
+    connect(resetSessionAction, SIGNAL(triggered(bool)), _timeclock, SLOT(clearSession()));
 
     // ------------------------------------------------------------------------
     // Create the GUI from our XML data file.
