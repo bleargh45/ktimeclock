@@ -8,7 +8,6 @@
 #define KTIMECLOCK_H
 
 #include <K3ListView>
-#include <QQueue>
 #include <QDateTime>
 #include <QTimer>
 #include <QDomElement>
@@ -40,12 +39,9 @@ class KTimeclock : public K3ListView
 
     public slots:
         /**
-         * Loads the timeclock data from the first available data file.
-         * Searches first for an XML data file, falling back onto the old-style
-         * text data file if no XML data file is found.
+         * Loads the timeclock data from the XML data file.
          *
          * @see     _loadXMLData()
-         * @see     _loadTextData()
          */
         void loadData ();
 
@@ -270,27 +266,6 @@ class KTimeclock : public K3ListView
          * @returns Did we load information from the data file?
          */
         bool _loadXMLData ();
-
-        /**
-         * Loads our timeclock information from a text data file (the old
-         * KTimeclock data file format).  Returns TRUE if we're able to load
-         * information from the data file, returning FALSE otherwise.
-         *
-         * @returns Did we load information from the data file?
-         * @see     _loadTextDataQueue(QQueue<QString>,KTimeclockListItem*,int)
-         */
-        bool _loadTextData ();
-
-        /**
-         * Recursively loads our timeclock information from a queue of data
-         * created by @ref _loadTextData().
-         *
-         * @param   queue   Queue to load the data form
-         * @param   parent  Parent item to create child items underneath
-         * @param   depth   Depth level of the parent item
-         * @see     _loadTextData()
-         */
-        void _loadTextDataQueue (QQueue<QString> &queue, KTimeclockListItem* parent, int depth);
 };
 
 #endif

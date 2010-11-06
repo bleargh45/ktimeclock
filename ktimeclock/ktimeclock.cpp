@@ -69,9 +69,7 @@ KTimeclock::~KTimeclock ()
 // ----------------------------------------------------------------------------
 // Function:    loadData ()
 // ----------------------------------------------------------------------------
-// Loads the timeclock data from the first available data file.  Searches first
-// for an XML data file, falling back onto the old-style text data file if no
-// XML data file is found.
+// Loads the timeclock data from the XML data file.
 // ----------------------------------------------------------------------------
 void KTimeclock::loadData ()
 {
@@ -83,17 +81,9 @@ void KTimeclock::loadData ()
     this->clear();
 
     // ------------------------------------------------------------------------
-    // Try to load up an XML data file.
+    // Load up an XML data file.
     // ------------------------------------------------------------------------
     bool gotdata = this->_loadXMLData();
-
-    // ------------------------------------------------------------------------
-    // If we didn't find any XML data to load, see if there is a legacy text
-    // file from the KDE-1.x version and try to load that instead.
-    // ------------------------------------------------------------------------
-    if (!gotdata) {
-        gotdata = this->_loadTextData();
-    }
 
     // ------------------------------------------------------------------------
     // Turn updates on again and trigger an update of the visuals.
@@ -926,150 +916,4 @@ bool KTimeclock::_loadXMLData ()
     // Done loading up the data, return successfully.
     // ------------------------------------------------------------------------
     return true;
-}
-
-// ----------------------------------------------------------------------------
-// Function:    _loadTextData ()
-// Returns:     Did we load information from the data file?
-// ----------------------------------------------------------------------------
-// Loads our timeclock information from a text data file (the old KTimeclock
-// data file format).  Returns TRUE if we're able to load information from the
-// data file, returning FALSE otherwise.
-// ----------------------------------------------------------------------------
-bool KTimeclock::_loadTextData ()
-{
-    // ------------------------------------------------------------------------
-    // Get the full path to the text data file that we're loading.
-    // ------------------------------------------------------------------------
-    QString filename = KGlobal::dirs()->findResource(
-                            "data", "ktimeclock/ktimeclock.txt"
-                            );
-    QFile file( filename );
-
-    // ------------------------------------------------------------------------
-    // If the file doesn't exist or we can't open it, exit early.
-    // ------------------------------------------------------------------------
-    if (!file.exists()) return false;
-    if (!file.open( QIODevice::ReadOnly )) return false;
-
-    // ------------------------------------------------------------------------
-    // Load up the entire file line-by-line into a queue that we can process
-    // recursively.
-    // ------------------------------------------------------------------------
-    QTextStream finstream( &file );
-    QQueue<QString> queue;
-    while (!finstream.atEnd()) {
-        queue.enqueue( QString( finstream.readLine() ) );
-    }
-    file.close();
-
-    // ------------------------------------------------------------------------
-    // Call off to recursively load the data out of the queue.
-    // ------------------------------------------------------------------------
-    this->_loadTextDataQueue( queue, NULL, 0 );
-
-    // ------------------------------------------------------------------------
-    // Done loading up the data, return successfully.
-    // ------------------------------------------------------------------------
-    return true;
-}
-
-// ----------------------------------------------------------------------------
-// Function:    _loadTextDataQueue (QQueue<QString> &queue,
-//                                  KTimeclockListItem* parent, int depth)
-// Parameters:  queue       - Queue to load the data from
-//              parent      - Parent item to create child elements underneath
-//              depth       - Depth level of the parent item
-// ----------------------------------------------------------------------------
-// Recursively loads our timeclock information from a queue of data created by
-// '_loadTextData()'.
-// ----------------------------------------------------------------------------
-void KTimeclock::_loadTextDataQueue (QQueue<QString> &queue, KTimeclockListItem* parent, int depth)
-{
-    // ------------------------------------------------------------------------
-    // Loop forever (we'll know when to kick out later on)
-    // ------------------------------------------------------------------------
-    while (!queue.isEmpty()) {
-        // --------------------------------------------------------------------
-        // Get the next item out of the queue.
-        // --------------------------------------------------------------------
-        QString line = queue.head();
-
-        // --------------------------------------------------------------------
-        // Get the depth of this item and kick ourselves out if its at a lower
-        // depth level than we're at.
-        // --------------------------------------------------------------------
-        int currdepth = line.count( '\t' ) - 1;
-        if (currdepth <= depth) { return; }
-
-        // --------------------------------------------------------------------
-        // Get the info that we need out of this item.
-        // --------------------------------------------------------------------
-            // ----------------------------------------------------------------
-            // Number of seconds spent so far.
-            // ----------------------------------------------------------------
-        int sec_idx = line.find( '\t' );
-        QString tmp = line.mid( 0, sec_idx );
-        int seconds = tmp.toInt();
-        sec_idx ++;
-            // ----------------------------------------------------------------
-            // Type; project or task
-            // ----------------------------------------------------------------
-        int type_idx = line.find( '\t', sec_idx );
-        QString type = line.mid( sec_idx, (type_idx - sec_idx) );
-            // ----------------------------------------------------------------
-            // Description
-            // ----------------------------------------------------------------
-        int desc_idx = line.findRev( '\t' );
-        desc_idx ++;
-        QString desc = line.mid( desc_idx, (line.length() - desc_idx) );
-
-        // --------------------------------------------------------------------
-        // Free up the memory for this item by removing it from the queue.
-        // --------------------------------------------------------------------
-        queue.dequeue();
-
-        // --------------------------------------------------------------------
-        // Create a new list item for this project/task.
-        // --------------------------------------------------------------------
-        KTimeclockListItem* item;
-        if (parent == NULL) {
-            item = new KTimeclockListItem( this );
-        }
-        else {
-            item = new KTimeclockListItem( parent );
-        }
-
-        // --------------------------------------------------------------------
-        // Add in all of the data that we read out of this line into the
-        // timeclock list item.
-        // --------------------------------------------------------------------
-        item->setTimeSpent( seconds );
-        item->setDescription( desc );
-        if (type == "Project") {
-            item->setProject( true );
-        }
-
-        // --------------------------------------------------------------------
-        // Figure out how we're supposed to recurse.
-        // --------------------------------------------------------------------
-            // ----------------------------------------------------------------
-            // If the queue is empty, abort. 
-            // ----------------------------------------------------------------
-        if (queue.isEmpty()) { return; }
-            // ----------------------------------------------------------------
-            // If its deeper, recurse.  If its shallower, abort.
-            // ----------------------------------------------------------------
-        int nextdepth = line.count( '\t' ) - 1;
-        if (nextdepth > currdepth) {
-            this->_loadTextDataQueue( queue, item, currdepth );
-        }
-        else if (nextdepth < currdepth) {
-            return;
-        }
-            // ----------------------------------------------------------------
-            // Otherwise, its at the same level; loop around and process the
-            // next line.
-            // ----------------------------------------------------------------
-    }
 }
