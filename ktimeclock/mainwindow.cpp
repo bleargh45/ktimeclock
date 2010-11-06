@@ -230,61 +230,61 @@ void KTimeclockWindow::initMenus ()
     // ------------------------------------------------------------------------
     // Standard menu fare
     // ------------------------------------------------------------------------
-    (void)KStandardAction::save( _timeclock, SLOT(saveData()),
+    KStandardAction::save( _timeclock, SLOT(saveData()),
                 actionCollection() );
-    (void)KStandardAction::quit( this, SLOT(quit()),
+    KStandardAction::quit( this, SLOT(quit()),
                 actionCollection() );
 
-    (void)KStandardAction::keyBindings( this, SLOT(keyBindings()),
+    KStandardAction::keyBindings( this, SLOT(keyBindings()),
                 actionCollection() );
-    (void)KStandardAction::configureToolbars( this, SLOT(cfgToolbars()),
+    KStandardAction::configureToolbars( this, SLOT(cfgToolbars()),
                 actionCollection() );
-    (void)KStandardAction::preferences( _timeclock, SLOT(preferences()),
+    KStandardAction::preferences( _timeclock, SLOT(preferences()),
                 actionCollection() );
 
     // ------------------------------------------------------------------------
     // Our own custom menu items
     // ------------------------------------------------------------------------
-    (void)new KAction( i18n("&Start timer"), "1rightarrow",
-                       Qt::CTRL+Qt::Key_T,
-                       _timeclock, SLOT(start()),
-                       actionCollection(), "start" );
-    (void)new KAction( i18n("S&top timer"), "stop",
-                       Qt::CTRL+Qt::ALT+Qt::Key_T,
-                       _timeclock, SLOT(stop()),
-                       actionCollection(), "stop" );
-    (void)new KAction( i18n("New &project"), "folder_new",
-                       Qt::CTRL+Qt::Key_P,
-                       _timeclock, SLOT(addProject()),
-                       actionCollection(), "addproject" );
-    (void)new KAction( i18n("New &sub-project"), "folder_new",
-                       Qt::CTRL+Qt::ALT+Qt::Key_P,
-                       _timeclock, SLOT(addSubProject()),
-                       actionCollection(), "addsubproject" );
-    (void)new KAction( i18n("&New task"), "filenew",
-                       Qt::CTRL+Qt::Key_N,
-                       _timeclock, SLOT(addTask()),
-                       actionCollection(), "addtask" );
-    (void)new KAction( i18n("&Edit task"), "edit",
-                       Qt::CTRL+Qt::Key_E,
-                       _timeclock, SLOT(editItem()),
-                       actionCollection(), "edititem" );
-    (void)new KAction( i18n("&Delete task"), "editdelete",
-                       Qt::CTRL+Qt::Key_D,
-                       _timeclock, SLOT(deleteItem()),
-                       actionCollection(), "deleteitem" );
-    (void)new KAction( i18n("&Clear task"),
-                       Qt::CTRL+Qt::Key_C,
-                       _timeclock, SLOT(clearTask()),
-                       actionCollection(), "cleartask" );
-    (void)new KAction( i18n("Clear &all tasks"),
-                       Qt::CTRL+Qt::Key_A,
-                       _timeclock, SLOT(clearAllTasks()),
-                       actionCollection(), "clearalltasks" );
-    (void)new KAction( i18n("Reset &session"),
-                       Qt::CTRL+Qt::Key_R,
-                       _timeclock, SLOT(clearSession()),
-                       actionCollection(), "clearsession" );
+    new KAction( i18n("&Start timer"), "1rightarrow",
+                 Qt::CTRL+Qt::Key_T,
+                 _timeclock, SLOT(start()),
+                 actionCollection(), "start" );
+    new KAction( i18n("S&top timer"), "stop",
+                 Qt::CTRL+Qt::ALT+Qt::Key_T,
+                 _timeclock, SLOT(stop()),
+                 actionCollection(), "stop" );
+    new KAction( i18n("New &project"), "folder_new",
+                 Qt::CTRL+Qt::Key_P,
+                 _timeclock, SLOT(addProject()),
+                 actionCollection(), "addproject" );
+    new KAction( i18n("New &sub-project"), "folder_new",
+                 Qt::CTRL+Qt::ALT+Qt::Key_P,
+                 _timeclock, SLOT(addSubProject()),
+                 actionCollection(), "addsubproject" );
+    new KAction( i18n("&New task"), "filenew",
+                 Qt::CTRL+Qt::Key_N,
+                 _timeclock, SLOT(addTask()),
+                 actionCollection(), "addtask" );
+    new KAction( i18n("&Edit task"), "edit",
+                 Qt::CTRL+Qt::Key_E,
+                 _timeclock, SLOT(editItem()),
+                 actionCollection(), "edititem" );
+    new KAction( i18n("&Delete task"), "editdelete",
+                 Qt::CTRL+Qt::Key_D,
+                 _timeclock, SLOT(deleteItem()),
+                 actionCollection(), "deleteitem" );
+    new KAction( i18n("&Clear task"),
+                 Qt::CTRL+Qt::Key_C,
+                 _timeclock, SLOT(clearTask()),
+                 actionCollection(), "cleartask" );
+    new KAction( i18n("Clear &all tasks"),
+                 Qt::CTRL+Qt::Key_A,
+                 _timeclock, SLOT(clearAllTasks()),
+                 actionCollection(), "clearalltasks" );
+    new KAction( i18n("Reset &session"),
+                 Qt::CTRL+Qt::Key_R,
+                 _timeclock, SLOT(clearSession()),
+                 actionCollection(), "clearsession" );
 
     // ------------------------------------------------------------------------
     // Create the GUI from our XML data file.
