@@ -21,6 +21,7 @@
 #include <KStandardAction>
 #include <KStatusBar>
 #include <KApplication>
+#include <KActionCollection>
 
 // ----------------------------------------------------------------------------
 // Function:    KTimeclockWindow ()
