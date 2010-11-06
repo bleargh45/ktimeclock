@@ -230,16 +230,16 @@ void KTimeclockWindow::initMenus ()
     // ------------------------------------------------------------------------
     // Standard menu fare
     // ------------------------------------------------------------------------
-    (void)KStdAction::save( _timeclock, SLOT(saveData()),
+    (void)KStandardAction::save( _timeclock, SLOT(saveData()),
                 actionCollection() );
-    (void)KStdAction::quit( this, SLOT(quit()),
+    (void)KStandardAction::quit( this, SLOT(quit()),
                 actionCollection() );
 
-    (void)KStdAction::keyBindings( this, SLOT(keyBindings()),
+    (void)KStandardAction::keyBindings( this, SLOT(keyBindings()),
                 actionCollection() );
-    (void)KStdAction::configureToolbars( this, SLOT(cfgToolbars()),
+    (void)KStandardAction::configureToolbars( this, SLOT(cfgToolbars()),
                 actionCollection() );
-    (void)KStdAction::preferences( _timeclock, SLOT(preferences()),
+    (void)KStandardAction::preferences( _timeclock, SLOT(preferences()),
                 actionCollection() );
 
     // ------------------------------------------------------------------------
