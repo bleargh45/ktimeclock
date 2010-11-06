@@ -20,6 +20,7 @@
 #include <KMenuBar>
 #include <KStandardAction>
 #include <KStatusBar>
+#include <KApplication>
 
 // ----------------------------------------------------------------------------
 // Function:    KTimeclockWindow ()
