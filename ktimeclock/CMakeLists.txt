@@ -18,7 +18,7 @@ set(ktimeclock_SRCS
 
 kde4_add_executable(ktimeclock ${ktimeclock_SRCS})
 
-target_link_libraries(ktimeclock ${KDE4_KDECORE_LIBS})
+target_link_libraries(ktimeclock QtXml Qt3Support kde3support ${KDE4_KDEUI_LIBS})
 
 install(TARGETS ktimeclock ${INSTALL_TARGETS_DEFAULT_ARGS})
 
