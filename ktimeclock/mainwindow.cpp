@@ -28,7 +28,7 @@
 // Constructor.
 // ----------------------------------------------------------------------------
 KTimeclockWindow::KTimeclockWindow ()
-    : KMainWindow( 0 )
+    : KXmlGuiWindow( 0 )
 {
     // ------------------------------------------------------------------------
     // Create a new timeclock and make that our central widget

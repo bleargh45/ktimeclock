@@ -7,7 +7,7 @@
 #ifndef KTIMECLOCK_MAINWINDOW_H
 #define KTIMECLOCK_MAINWINDOW_H
 
-#include <KMainWindow>
+#include <KXmlGuiWindow>
 #include "ktimeclock.h"
 
 class KTimeclockDocker;
@@ -18,7 +18,7 @@ class KTimeclockDocker;
  * @short   Main timeclock window.
  * @author  Graham TerMarsch (graham@howlingfrog.com)
  */
-class KTimeclockWindow : public KMainWindow
+class KTimeclockWindow : public KXmlGuiWindow
 {
     Q_OBJECT
 
