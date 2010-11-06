@@ -324,6 +324,6 @@ void KTimeclockWindow::initMenus ()
 // ----------------------------------------------------------------------------
 void KTimeclockWindow::initStatusbar ()
 {
-    statusBar()->insertItem( QString::null, ID_STATUS_ENABLED, 0, true);
-    statusBar()->insertItem( QString::null, ID_STATUS_SESSION, 0, true );
+    statusBar()->insertItem( QString::null, ID_STATUS_ENABLED, 0);
+    statusBar()->insertItem( QString::null, ID_STATUS_SESSION, 0);
 }
