@@ -11,8 +11,6 @@
 #include "version.h"
 #include "mainwindow.h"
 
-static const char *description = I18N_NOOP( "KDE Time clock." );
-
 // ----------------------------------------------------------------------------
 // Main routine; starts up whole thing.
 // ----------------------------------------------------------------------------
@@ -21,19 +19,33 @@ int main (int argc, char* argv[])
     // ------------------------------------------------------------------------
     // Set up out "About" box
     // ------------------------------------------------------------------------
-    KAboutData aboutData( "ktimeclock",
-       I18N_NOOP("KTimeclock"),
-       KTIMECLOCK_VERSION,
-       description,
-// UNFINISHED -> Need useful license text here.
-       KAboutData::License_Artistic,
-       "(C) 1998-2002 Graham TerMarsch",
-       "http://www.howlingfrog.com/opensource/ktimeclock/",
-       "ktimeclock-bugs@howlingfrog.com"
-       );
-    aboutData.addAuthor( "Graham TerMarsch",
-        I18N_NOOP("Original Author"),
-        "graham@howlingfrog.com" );
+    KAboutData aboutData(
+        // Program name, used internally
+        "ktimeclock",
+        // Message catalog name (if null, program name is used instead)
+        NULL,
+        // Displayable program name string,
+        ki18n("KTimeclock"),
+        // Program version
+        KTIMECLOCK_VERSION,
+        // Short description of what the app does,
+        ki18n("KDE Time Clock"),
+        // License the code is released under,
+        KAboutData::License_Artistic,
+        // Copyright Statement
+        ki18n("(C) 1998-2010 Graham TerMarsch"),
+        // Optional text shown in About box
+        ki18n("w00t!"),
+        // Program homepage
+        "http://www.howlingfrog.com/",
+        // Bug report e-mail address
+        "ktimeclock@howlingfrog.com"
+    );
+    aboutData.addAuthor(
+        ki18n("Graham TerMarsch"),
+        ki18n("Author"),
+        "graham@howlingfrog.com"
+    );
 
     // ------------------------------------------------------------------------
     // Read in and act on any command line args.
