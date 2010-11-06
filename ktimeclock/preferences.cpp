@@ -29,7 +29,6 @@ KTimeclockConfig::KTimeclockConfig (QWidget* parent)
 {
 // UNFINISHED -> Doesn't set up the default 'help' page.
     this->makeGeneralPage();
-    this->makeReportPage();
 
     this->setMinimumHeight( 300 );
 }
@@ -75,42 +74,9 @@ void KTimeclockConfig::slotApply ()
     generalGroup->writeEntry( "autosave", _general.autosaveNum->value() );
 
     // ------------------------------------------------------------------------
-    // "Report" options.
-    // ------------------------------------------------------------------------
-    KConfigGroup reportGroup( cfg, "Report" );
-    reportGroup->writeEntry( "background", _report.backgroundCol.name() );
-    reportGroup->writeEntry( "text", _report.textCol.name() );
-
-    // ------------------------------------------------------------------------
     // Done saving, sync the changes to disk.
     // ------------------------------------------------------------------------
     cfg->sync();
-}
-
-// ----------------------------------------------------------------------------
-// Function:    slotReportBackgroundChanged (const QColor& col)
-// Parameters:  col         - New report background color
-// ----------------------------------------------------------------------------
-// Called whenever the report background colour is changed in the "Reports"
-// page of the preferences dialog.  Stores the new background colour for the
-// reports.  Needed as we're using a KColorbutton to do the colour selection.
-// ----------------------------------------------------------------------------
-void KTimeclockConfig::slotReportBackgroundChanged (const QColor& col)
-{
-    _report.backgroundCol = col;
-}
-
-// ----------------------------------------------------------------------------
-// Function:    slotReportTextChanged (const QColor& col)
-// Parameters:  col         - New report text color
-// ----------------------------------------------------------------------------
-// Called whenever the report text colour in changed in the "Reports' page of
-// the preferences dialog.  Stores the new text colour for the reports.  Needed
-// as we're using a KColorButton to do the colour selection.
-// ----------------------------------------------------------------------------
-void KTimeclockConfig::slotReportTextChanged (const QColor& col)
-{
-    _report.textCol = col;
 }
 
 // ----------------------------------------------------------------------------
@@ -156,63 +122,4 @@ void KTimeclockConfig::makeGeneralPage ()
     _general.autosaveNum = new KIntNumInput( page );
     _general.autosaveNum->setValue( generalGroup->readEntry( "autosave", 5 ) );
     grid->addWidget( _general.autosaveNum, 0, 1 );
-}
-
-// ----------------------------------------------------------------------------
-// Function:    makeReportPage ()
-// ----------------------------------------------------------------------------
-// Makes all of the widgets for the "Reports" page in the preferences dialog.
-// ----------------------------------------------------------------------------
-void KTimeclockConfig::makeReportPage ()
-{
-    // ------------------------------------------------------------------------
-    // Create the frame for the page and hold onto its index.
-    // ------------------------------------------------------------------------
-    Q3Frame* page = addPage(
-                    i18n("Reports"),
-                    i18n("Report colours"),
-                    KGlobal::iconLoader()->loadIcon( "appearance",
-                        KIcon::NoGroup, KIcon::SizeMedium )
-                    );
-    _report.idx = pageIndex( page );
-
-    // ------------------------------------------------------------------------
-    // Create a layout within the page to manage all of the widgets we're going
-    // to create.
-    // ------------------------------------------------------------------------
-    Q3GridLayout* grid = new Q3GridLayout( page, 4, 2, 0, -1, "grid" );
-
-    // ------------------------------------------------------------------------
-    // Get a handle to the config object we're pulling values out of.
-    // ------------------------------------------------------------------------
-    KSharedConfigPtr cfg = KGlobal::config();
-    KConfigGroup reportGroup( cfg, "Report" );
-
-    // ------------------------------------------------------------------------
-    // Create the widgets.
-    // ------------------------------------------------------------------------
-        // --------------------------------------------------------------------
-        // Report background colour
-        // --------------------------------------------------------------------
-    _report.backgroundLbl = new QLabel( page, "_report.backgroundLbl" );
-    _report.backgroundLbl->setText( i18n("Background") );
-    grid->addWidget( _report.backgroundLbl, 0, 0 );
-
-    _report.backgroundBtn = new KColorButton( page, "_report.backgroundBtn" );
-    connect( _report.backgroundBtn, SIGNAL(changed(const QColor&)),
-             this, SLOT(slotReportBackgroundChanged(const QColor&)) );
-    _report.backgroundBtn->setColor( reportGroup->readEntry("background", "#FFFFFF") );
-    grid->addWidget( _report.backgroundBtn, 0, 1 );
-        // --------------------------------------------------------------------
-        // Report text colour
-        // --------------------------------------------------------------------
-    _report.textLbl = new QLabel( page, "_report.textLbl" );
-    _report.textLbl->setText( i18n("Text") );
-    grid->addWidget( _report.textLbl, 1, 0 );
-
-    _report.textBtn = new KColorButton( page, "_report.textBtn" );
-    connect( _report.textBtn, SIGNAL(changed(const QColor&)),
-             this, SLOT(slotReportTextChanged(const QColor&)) );
-    _report.textBtn->setColor( reportGroup->readEntry("text", "#000000") );
-    grid->addWidget( _report.textBtn, 1, 1 );
 }

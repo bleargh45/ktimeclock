@@ -47,38 +47,12 @@ class KTimeclockConfig : public KDialog
          */
         void slotApply ();
 
-        /**
-         * Called whenever the report background colour is changed in the
-         * "Reports" page of the preferences dialog.  Stores the new background
-         * colour for the reports.  Needed as we're using a KColorbutton to do
-         * the colour selection.
-         *
-         * @param   col     New report background color
-         */
-        void slotReportBackgroundChanged (const QColor& col);
-
-        /**
-         * Called whenever the report text colour in changed in the "Reports'
-         * page of the preferences dialog.  Stores the new text colour for the
-         * reports.  Needed as we're using a KColorButton to do the colour
-         * selection.
-         *
-         * @param   col     New report text color
-         */
-        void slotReportTextChanged (const QColor& col);
-
     private:
         /**
          * Makes all of the widgets for the "General" page in the preferences
          * dialog.
          */
         void makeGeneralPage ();
-
-        /**
-         * Makes all of the widgets for the "Reports" page in the preferences
-         * dialog.
-         */
-        void makeReportPage ();
 
         /**
          * Structure for the "General" preferences page and the widgets on that
@@ -92,25 +66,9 @@ class KTimeclockConfig : public KDialog
         };
 
         /**
-         * Structure for the "Reports" preferences page and widgets on that
-         * page.
-         */
-        struct ReportWidget
-        {
-            int             idx;
-            QLabel*         backgroundLbl;
-            KColorButton*   backgroundBtn;
-            QColor          backgroundCol;
-            QLabel*         textLbl;
-            KColorButton*   textBtn;
-            QColor          textCol;
-        };
-
-        /**
          * Pages within our preferences dialog.
          */
         GeneralWidget       _general;
-        ReportWidget        _report;
 };
 
 #endif
