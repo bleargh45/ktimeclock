@@ -25,8 +25,13 @@
 // Constructor.
 // ----------------------------------------------------------------------------
 KTimeclockConfig::KTimeclockConfig (QWidget* parent)
-    : KDialog(IconList, i18n("Configure"), Help|Apply|Ok|Cancel, Ok, parent, true, true )
+    : KDialog(parent)
 {
+    this->setModal( true );
+    this->setButtons(
+        KDialog::Help | KDialog::Apply | KDialog::Ok | KDialog::Cancel
+    );
+
 // UNFINISHED -> Doesn't set up the default 'help' page.
     this->makeGeneralPage();
 
