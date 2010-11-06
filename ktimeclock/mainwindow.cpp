@@ -246,49 +246,49 @@ void KTimeclockWindow::initMenus ()
     // ------------------------------------------------------------------------
     KAction* startAction = new KAction(this);
     startAction->setText(i18n("&Start timer"));
-    startAction->setIcon(KIcon("1rightarrow"));
+    startAction->setIcon(KIcon("media-playback-start"));
     startAction->setShortcut(Qt::CTRL + Qt::Key_T);
     actionCollection()->addAction("start", startAction);
     connect(startAction, SIGNAL(triggered(bool)), _timeclock, SLOT(start()));
 
     KAction* stopAction = new KAction(this);
     stopAction->setText(i18n("S&top timer"));
-    stopAction->setIcon(KIcon("stop"));
+    stopAction->setIcon(KIcon("media-playback-stop"));
     stopAction->setShortcut(Qt::CTRL + Qt::ALT + Qt::Key_T);
     actionCollection()->addAction("stop", stopAction);
     connect(stopAction, SIGNAL(triggered(bool)), _timeclock, SLOT(stop()));
 
     KAction* newProjectAction = new KAction(this);
     newProjectAction->setText(i18n("New &project"));
-    newProjectAction->setIcon(KIcon("folder_new"));
+    newProjectAction->setIcon(KIcon("folder-new"));
     newProjectAction->setShortcut(Qt::CTRL + Qt::Key_P);
     actionCollection()->addAction("addproject", newProjectAction);
     connect(newProjectAction, SIGNAL(triggered(bool)), _timeclock, SLOT(addProject()));
 
     KAction* newSubProjectAction = new KAction(this);
     newSubProjectAction->setText(i18n("New &sub-project"));
-    newSubProjectAction->setIcon(KIcon("folder_new"));
+    newSubProjectAction->setIcon(KIcon("folder-new"));
     newSubProjectAction->setShortcut(Qt::CTRL + Qt::ALT + Qt::Key_P);
     actionCollection()->addAction("addsubproject", newSubProjectAction);
     connect(newSubProjectAction, SIGNAL(triggered(bool)), _timeclock, SLOT(addSubProject()));
 
     KAction* newTaskAction = new KAction(this);
     newTaskAction->setText(i18n("&New task"));
-    newTaskAction->setIcon(KIcon("filenew"));
+    newTaskAction->setIcon(KIcon("document-new"));
     newTaskAction->setShortcut(Qt::CTRL + Qt::Key_N);
     actionCollection()->addAction("addtask", newTaskAction);
     connect(newTaskAction, SIGNAL(triggered(bool)), _timeclock, SLOT(addTask()));
 
     KAction* editTaskAction = new KAction(this);
     editTaskAction->setText(i18n("&Edit task"));
-    editTaskAction->setIcon(KIcon("edit"));
+    editTaskAction->setIcon(KIcon("document-edit"));
     editTaskAction->setShortcut(Qt::CTRL + Qt::Key_E);
     actionCollection()->addAction("edititem", editTaskAction);
     connect(editTaskAction, SIGNAL(triggered(bool)), _timeclock, SLOT(editItem()));
 
     KAction* deleteTaskAction = new KAction(this);
     deleteTaskAction->setText(i18n("&Delete task"));
-    deleteTaskAction->setIcon(KIcon("editdelete"));
+    deleteTaskAction->setIcon(KIcon("document-close"));
     deleteTaskAction->setShortcut(Qt::CTRL + Qt::Key_D);
     actionCollection()->addAction("deleteitem", deleteTaskAction);
     connect(deleteTaskAction, SIGNAL(triggered(bool)), _timeclock, SLOT(deleteItem()));
