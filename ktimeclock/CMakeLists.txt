@@ -25,8 +25,8 @@ install(TARGETS ktimeclock ${INSTALL_TARGETS_DEFAULT_ARGS})
 
 ########### install files ###############
 
-install(FILES  ktimeclock.desktop DESTINATION /share/applications/kde)
-install(FILES  ktimeclockui.rc DESTINATION /share/apps/ktimeclock)
+install(FILES  ktimeclock.desktop DESTINATION ${XDG_APPS_INSTALL_DIR})
+install(FILES  ktimeclockui.rc DESTINATION ${DATA_INSTALL_DIR}/ktimeclock/)
 
 kde4_install_icons(${ICON_INSTALL_DIR})
 
