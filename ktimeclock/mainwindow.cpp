@@ -194,7 +194,7 @@ void KTimeclockWindow::keyBindings ()
 // ----------------------------------------------------------------------------
 void KTimeclockWindow::cfgToolbars ()
 {
-    KEditToolbar dlg( actionCollection() );
+    KEditToolBar dlg( actionCollection() );
     if (dlg.exec())
         createGUI();
 }
