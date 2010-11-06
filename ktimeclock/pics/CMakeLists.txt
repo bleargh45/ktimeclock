@@ -7,7 +7,7 @@ include_directories(${KDE4_INCLUDES} ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} )
 install(FILES
   dockicon0.xpm dockicon1.xpm dockicon2.xpm dockicon3.xpm
   dockicon4.xpm dockicon5.xpm dockicon6.xpm dockicon7.xpm
-  DESTINATION /share/apps/ktimeclock/pics
+  DESTINATION ${DATA_INSTALL_DIR}/ktimeclock/pics/
 )
 
 
