@@ -1,3 +1,5 @@
+project(ktimeclock)
+set(PROJECT_VERSION "4.0.0")
 
 find_package(KDE4 REQUIRED)
 
@@ -12,3 +14,10 @@ add_definitions( -DQT3_SUPPORT -DQT3_SUPPORT_WARNINGS )
 
 add_subdirectory(ktimeclock)
 add_subdirectory(doc)
+
+set(ARCHIVE_NAME ${PROJECT_NAME}-${PROJECT_VERSION})
+add_custom_target(dist
+  COMMAND git archive --prefix=${ARCHIVE_NAME}/ HEAD
+    | gzip > ${CMAKE_BINARY_DIR}/${ARCHIVE_NAME}.tar.gz
+  WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+  )
