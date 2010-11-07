@@ -1,3 +1,9 @@
+4.0.0	- ???
+- Ported to KDE-4.5
+- Removed a number of dialogs and configuration options that weren't used.
+
+===============================================================================
+
 May 8, 2002
 - Updated KTimeclock to build properly against KDE-3.x.
 
