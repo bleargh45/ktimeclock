@@ -184,7 +184,7 @@ void KTimeclockWindow::loadGeometry ()
 // ----------------------------------------------------------------------------
 void KTimeclockWindow::keyBindings ()
 {
-    KShortcutsDialog::configureKeys( this->actionCollection(), this->xmlFile() );
+    KShortcutsDialog::configure( this->actionCollection() );
 }
 
 // ----------------------------------------------------------------------------
