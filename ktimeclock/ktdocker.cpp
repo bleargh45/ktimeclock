@@ -23,10 +23,10 @@ KTimeclockDocker::KTimeclockDocker (QWidget* parent)
     // Load up all of the icons that we're going to use when animating the
     // clock in the task bar.
     // ------------------------------------------------------------------------
-    for (int idx=0; idx<8; idx++)
+    for (int idx=1; idx<=12; idx++)
     {
         QString file;
-        file.sprintf( "dockicon%d", idx );
+        file.sprintf( "dockicon-%d", idx );
         _icons.insert( idx, KSystemTrayIcon::loadIcon(file) );
     }
 
