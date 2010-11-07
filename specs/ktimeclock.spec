@@ -1,27 +1,15 @@
-###############################################################################
-# KTimeclock SPEC file
-###############################################################################
-# $Revision: 1.3 $
-###############################################################################
-# This SPEC file is known to work for compiling/building KTimeclock on all of
-# the following platforms:
-# - Mandrake 8.1
-# - RedHat 7.2
-#
-# If you manage to build KTimeclock on a platform not listed above, please
-# contact the author to let him know what (if any) changes were needed to be
-# made to this SPEC file.
-###############################################################################
-
 Name:       ktimeclock
-Version:    2.0.2
+Version:    4.0.0
 Release:    1
-Copyright:  Artistic
+License:    Artistic
 Group:      Office
 URL:        http://www.howlingfrog.com/opensource/ktimeclock/
-Source:     http://www.howlingfrog.com/opensource/%{name}/downloads/v%{version}/tarball/%{name}-%{version}.tar.gz
+Source:     %{name}-%{version}.tar.gz
 BuildRoot:  /var/tmp/%{name}-%{version}
 Packager:   graham@howlingfrog.com
+
+BuildRequires:  cmake >= 2.4.6
+BuildRequires:  kdelibs-devel
 
 Summary:    Task-based timeclock for KDE.
 %description
@@ -32,14 +20,14 @@ time is spent working on various projects and the tasks that they involve.
 rm -rf $RPM_BUILD_ROOT
 
 %setup
-CXXFLAGS="$RPM_OPT_FLAGS -DNDEBUG" \
-    ./configure --prefix=%{_prefix}
 
 %build
-make
+%cmake .
+make VERBOSE=1 %{?_smp_mflags}
 
 %install
-make install DESTDIR="$RPM_BUILD_ROOT"
+rm -rf $RPM_BUILD_ROOT
+make install DESTDIR=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -47,26 +35,18 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %docdir %{_prefix}/share/doc/HTML/en/ktimeclock
 %doc %{_prefix}/share/doc/HTML/en/ktimeclock/*
-%dir %{_prefix}/share/apps/ktimeclock
-%dir %{_prefix}/share/apps/ktimeclock/pics
+%dir %{_prefix}/share/kde4/apps/ktimeclock
 %{_prefix}/bin/ktimeclock
-%{_prefix}/share/apps/ktimeclock/pics/dockicon0.xpm
-%{_prefix}/share/apps/ktimeclock/pics/dockicon1.xpm
-%{_prefix}/share/apps/ktimeclock/pics/dockicon2.xpm
-%{_prefix}/share/apps/ktimeclock/pics/dockicon3.xpm
-%{_prefix}/share/apps/ktimeclock/pics/dockicon4.xpm
-%{_prefix}/share/apps/ktimeclock/pics/dockicon5.xpm
-%{_prefix}/share/apps/ktimeclock/pics/dockicon6.xpm
-%{_prefix}/share/apps/ktimeclock/pics/dockicon7.xpm
-%{_prefix}/share/apps/ktimeclock/ktimeclockui.rc
-%{_prefix}/share/applnk/Utilities/ktimeclock.desktop
-%{_prefix}/share/icons/hicolor/22x22/apps/ktimeclock.png
-%{_prefix}/share/icons/hicolor/32x32/apps/ktimeclock.png
-%{_prefix}/share/icons/hicolor/48x48/apps/ktimeclock.png
-%{_prefix}/share/icons/locolor/16x16/apps/ktimeclock.png
-%{_prefix}/share/icons/locolor/32x32/apps/ktimeclock.png
+%{_prefix}/share/kde4/apps/ktimeclock/pics/*
+%{_prefix}/share/kde4/apps/ktimeclock/ktimeclockui.rc
+%{_prefix}/share/applications/kde4/ktimeclock.desktop
+%{_prefix}/share/icons/hicolor/*/apps/ktimeclock.png
+%{_prefix}/share/icons/hicolor/*/apps/ktimeclock.svgz
 
 %changelog
+* Sat Nov 7 2010 Graham TerMarsch (graham@howlingfrog.com) - 4.0.0-1
+- First update for ktimeclock-4.0.0
+
 * Wed May 8 2002 Graham TerMarsch (graham@howlingfrog.com)
 - Updated for KTimeclock-2.0.2
 
