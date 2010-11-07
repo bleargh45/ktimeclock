@@ -27,3 +27,5 @@ install(FILES  ktimeclock.desktop DESTINATION ${XDG_APPS_INSTALL_DIR})
 install(FILES  ktimeclockui.rc DESTINATION ${DATA_INSTALL_DIR}/ktimeclock/)
 
 kde4_install_icons(${ICON_INSTALL_DIR})
+
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/version.h.in ${CMAKE_CURRENT_SOURCE_DIR}/version.h)
