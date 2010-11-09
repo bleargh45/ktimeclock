@@ -41,7 +41,7 @@ DlgAddEditProject::DlgAddEditProject (QWidget* parent)
     // ------------------------------------------------------------------------
     // Text editing widget; description of the project/task.
     // ------------------------------------------------------------------------
-    QLabel* lblDescription = new QLabel( page, "lblDescription" );
+    QLabel* lblDescription = new QLabel( page );
     lblDescription->setText( i18n("Description:") );
     _layout->addWidget( lblDescription, 0, 0, Qt::AlignRight );
 
@@ -52,7 +52,7 @@ DlgAddEditProject::DlgAddEditProject (QWidget* parent)
     // ------------------------------------------------------------------------
     // Drop/Spin box for the rate.
     // ------------------------------------------------------------------------
-    QLabel* lblRate = new QLabel( page, "lblRate" );
+    QLabel* lblRate = new QLabel( page );
     lblRate->setText( i18n("Rate:") );
     _layout->addWidget( lblRate, 1, 0, Qt::AlignRight );
 
@@ -194,7 +194,7 @@ DlgAddEditTask::DlgAddEditTask (QWidget* parent)
     // ------------------------------------------------------------------------
     // Spin boxes for the hours/seconds/minutes.
     // ------------------------------------------------------------------------
-    QLabel* lblTime = new QLabel( page, "lblTime" );
+    QLabel* lblTime = new QLabel( page );
     lblTime->setText( i18n("Time spent:") );
     _layout->addWidget( lblTime, 2, 0, Qt::AlignRight );
 
