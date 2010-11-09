@@ -114,7 +114,7 @@ void KTimeclockWindow::updateTime (const QString time) {
 // Shows the provided status message in the status bar.
 // ----------------------------------------------------------------------------
 void KTimeclockWindow::updateStatus (const QString text) {
-    statusBar()->message( text, 4000 );
+    statusBar()->showMessage( text, 4000 );
 }
 
 // ----------------------------------------------------------------------------
@@ -123,7 +123,7 @@ void KTimeclockWindow::updateStatus (const QString text) {
 // Clears the status bar.
 // ----------------------------------------------------------------------------
 void KTimeclockWindow::clearStatus () {
-    statusBar()->clear();
+    statusBar()->clearMessage();
 }
 
 // ----------------------------------------------------------------------------
