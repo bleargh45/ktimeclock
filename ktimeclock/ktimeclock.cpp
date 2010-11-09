@@ -8,7 +8,6 @@
 #include "ktaddedit.h"
 #include "kttime.h"
 #include "ktlistitem.h"
-#include <Q3Header>
 #include <QFile>
 #include <QString>
 #include <QTextStream>
