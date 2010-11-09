@@ -118,7 +118,7 @@ void DlgAddEditProject::setRate (const QString& rate) {
     // before the first numeric digit is the modifier character (and everything
     // after it is the rate itself).
     // ------------------------------------------------------------------------
-    unsigned int idx=0;
+    int idx=0;
     while (idx < rate.length()) {
         if (rate[idx].isDigit()) { break; }
         idx++;
