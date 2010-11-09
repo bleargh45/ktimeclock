@@ -163,8 +163,8 @@ QString DlgAddEditProject::rate () {
     // ------------------------------------------------------------------------
     QString result;
     result.sprintf(
-        "%s%0.2f",
-        _comboRateModifier->currentText().data(),
+        "%c%0.2f",
+        _comboRateModifier->currentText().at(0).toAscii(),
         _spinRate->value()
     );
 
