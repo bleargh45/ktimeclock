@@ -62,7 +62,6 @@ int main (int argc, char* argv[]) {
 
     KUniqueApplication myApp;
     KTimeclockWindow *ktimeclock = new KTimeclockWindow;
-    myApp.setMainWidget( ktimeclock );
     ktimeclock->show();
 
     // ------------------------------------------------------------------------
