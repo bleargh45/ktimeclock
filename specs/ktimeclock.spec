@@ -1,6 +1,6 @@
 Name:       ktimeclock
 Version:    4.0.0
-Release:    1
+Release:    2
 License:    Artistic
 Group:      Office
 URL:        http://www.howlingfrog.com/opensource/ktimeclock/
@@ -44,6 +44,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_prefix}/share/icons/hicolor/*/apps/ktimeclock.svgz
 
 %changelog
+* Tue Nov 9 2010 Graham TerMarsch (graham@howlingfrog.com) - 4.0.0-2
+- Patch release, with several compilation updates
+
 * Sat Nov 7 2010 Graham TerMarsch (graham@howlingfrog.com) - 4.0.0-1
 - First update for ktimeclock-4.0.0
 
