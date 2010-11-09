@@ -11,7 +11,6 @@
 #include <QLayout>
 #include <QLabel>
 #include <QRegExp>
-#include <Q3GridLayout>
 #include <KLocale>
 #include <KComboBox>
 
@@ -36,7 +35,7 @@ DlgAddEditProject::DlgAddEditProject (QWidget* parent)
     // ------------------------------------------------------------------------
     // Layout widget so that we can lay out everything nice and neat.
     // ------------------------------------------------------------------------
-    _layout = new Q3GridLayout( page, 1, 5, 5, -1, "layout" );
+    _layout = new QGridLayout( page );
 
     // ------------------------------------------------------------------------
     // Text editing widget; description of the project/task.

@@ -11,7 +11,7 @@
 #include <KComboBox>
 #include <KLineEdit>
 #include <KDoubleNumInput>
-#include <Q3GridLayout>
+#include <QGridLayout>
 #include <KIntNumInput>
 
 /**
@@ -80,7 +80,7 @@ class DlgAddEditProject : public KDialog {
         /**
          * Layout holding all of our widgets.
          */
-        Q3GridLayout*    _layout;
+        QGridLayout*    _layout;
 
         /**
          * Description of the project.
