@@ -49,12 +49,18 @@ KTimeclockWindow::KTimeclockWindow ()
     // ------------------------------------------------------------------------
     // Set up some signals/slots to connect ourselves to the timeclock.
     // ------------------------------------------------------------------------
-    connect( _timeclock, SIGNAL(status(const QString)),
-             this, SLOT(updateStatus(const QString)) );
-    connect( _timeclock, SIGNAL(sessionTime(const QString)),
-             this, SLOT(updateTime(const QString)) );
-    connect( _timeclock, SIGNAL(timerState(const QString)),
-             this, SLOT(updateState(const QString)) );
+    connect(
+        _timeclock, SIGNAL(status(const QString)),
+        this, SLOT(updateStatus(const QString))
+    );
+    connect(
+        _timeclock, SIGNAL(sessionTime(const QString)),
+        this, SLOT(updateTime(const QString))
+    );
+    connect(
+        _timeclock, SIGNAL(timerState(const QString)),
+        this, SLOT(updateState(const QString))
+    );
 
     // ------------------------------------------------------------------------
     // Create our status bar.
@@ -67,7 +73,7 @@ KTimeclockWindow::KTimeclockWindow ()
     // Popup menus.
     // ------------------------------------------------------------------------
     this->initMenus();
-    
+
     // ------------------------------------------------------------------------
     // Load up our geometry.
     // ------------------------------------------------------------------------
@@ -85,8 +91,7 @@ KTimeclockWindow::KTimeclockWindow ()
 // ----------------------------------------------------------------------------
 // Destructor.
 // ----------------------------------------------------------------------------
-KTimeclockWindow::~KTimeclockWindow ()
-{
+KTimeclockWindow::~KTimeclockWindow () {
     this->quit();
     if (_docker) delete _docker;
 }
@@ -97,8 +102,7 @@ KTimeclockWindow::~KTimeclockWindow ()
 // ----------------------------------------------------------------------------
 // Shows the provided session time in the status bar.
 // ----------------------------------------------------------------------------
-void KTimeclockWindow::updateTime (const QString time)
-{
+void KTimeclockWindow::updateTime (const QString time) {
     QString formatted = i18n("Session: ") + time;
     statusBar()->changeItem( formatted, ID_STATUS_SESSION );
 }
@@ -109,8 +113,7 @@ void KTimeclockWindow::updateTime (const QString time)
 // ----------------------------------------------------------------------------
 // Shows the provided status message in the status bar.
 // ----------------------------------------------------------------------------
-void KTimeclockWindow::updateStatus (const QString text)
-{
+void KTimeclockWindow::updateStatus (const QString text) {
     statusBar()->message( text, 4000 );
 }
 
@@ -119,8 +122,7 @@ void KTimeclockWindow::updateStatus (const QString text)
 // ----------------------------------------------------------------------------
 // Clears the status bar.
 // ----------------------------------------------------------------------------
-void KTimeclockWindow::clearStatus ()
-{
+void KTimeclockWindow::clearStatus () {
     statusBar()->clear();
 }
 
@@ -129,8 +131,7 @@ void KTimeclockWindow::clearStatus ()
 // Parameters:  state       - Timer state to show in the status bar
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
-void KTimeclockWindow::updateState (const QString state)
-{
+void KTimeclockWindow::updateState (const QString state) {
     statusBar()->changeItem( state, ID_STATUS_ENABLED );
 }
 
@@ -139,8 +140,7 @@ void KTimeclockWindow::updateState (const QString state)
 // ----------------------------------------------------------------------------
 // Saves our window position and geometry into our configuration file.
 // ----------------------------------------------------------------------------
-void KTimeclockWindow::saveGeometry ()
-{
+void KTimeclockWindow::saveGeometry () {
     KSharedConfigPtr cfg = KGlobal::config();
     KConfigGroup windowGroup(cfg, "Main Window Geometry");
     windowGroup.writeEntry( "Width",    this->width() );
@@ -156,8 +156,7 @@ void KTimeclockWindow::saveGeometry ()
 // Loads and resets our window position and geometry from the info in our
 // configuration file.
 // ----------------------------------------------------------------------------
-void KTimeclockWindow::loadGeometry ()
-{
+void KTimeclockWindow::loadGeometry () {
     KSharedConfigPtr cfg = KGlobal::config();
     KConfigGroup windowGroup(cfg, "Main Window Geometry");
     int w = windowGroup.readEntry( "Width", 620 );
@@ -182,8 +181,7 @@ void KTimeclockWindow::loadGeometry ()
 // ----------------------------------------------------------------------------
 // Allows the user to update the key-bindings for our actions.
 // ----------------------------------------------------------------------------
-void KTimeclockWindow::keyBindings ()
-{
+void KTimeclockWindow::keyBindings () {
     KShortcutsDialog::configure( this->actionCollection() );
 }
 
@@ -192,8 +190,7 @@ void KTimeclockWindow::keyBindings ()
 // ----------------------------------------------------------------------------
 // Allows the user to update the configuration of the toolbars.
 // ----------------------------------------------------------------------------
-void KTimeclockWindow::cfgToolbars ()
-{
+void KTimeclockWindow::cfgToolbars () {
     KEditToolBar dlg( actionCollection() );
     if (dlg.exec())
         createGUI();
@@ -204,8 +201,7 @@ void KTimeclockWindow::cfgToolbars ()
 // ----------------------------------------------------------------------------
 // Saves the timeclock data and our own window geometry.
 // ----------------------------------------------------------------------------
-void KTimeclockWindow::save ()
-{
+void KTimeclockWindow::save () {
     _timeclock->saveData();
     this->saveGeometry();
 }
@@ -215,8 +211,7 @@ void KTimeclockWindow::save ()
 // ----------------------------------------------------------------------------
 // Saves our application data and quits the application.
 // ----------------------------------------------------------------------------
-void KTimeclockWindow::quit ()
-{
+void KTimeclockWindow::quit () {
     this->save();
     kapp->quit();
 }
@@ -226,20 +221,22 @@ void KTimeclockWindow::quit ()
 // ----------------------------------------------------------------------------
 // Initializes our menus and creates the GUI.
 // ----------------------------------------------------------------------------
-void KTimeclockWindow::initMenus ()
-{
+void KTimeclockWindow::initMenus () {
     // ------------------------------------------------------------------------
     // Standard menu fare
     // ------------------------------------------------------------------------
-    KStandardAction::save( _timeclock, SLOT(saveData()),
-                actionCollection() );
-    KStandardAction::quit( this, SLOT(quit()),
-                actionCollection() );
-
-    KStandardAction::keyBindings( this, SLOT(keyBindings()),
-                actionCollection() );
-    KStandardAction::configureToolbars( this, SLOT(cfgToolbars()),
-                actionCollection() );
+    KStandardAction::save(
+        _timeclock, SLOT(saveData()), actionCollection()
+    );
+    KStandardAction::quit(
+        this, SLOT(quit()), actionCollection()
+    );
+    KStandardAction::keyBindings(
+        this, SLOT(keyBindings()), actionCollection()
+    );
+    KStandardAction::configureToolbars(
+        this, SLOT(cfgToolbars()), actionCollection()
+    );
 
     // ------------------------------------------------------------------------
     // Our own custom menu items
@@ -322,8 +319,7 @@ void KTimeclockWindow::initMenus ()
 // ----------------------------------------------------------------------------
 // Initializes our status bar.
 // ----------------------------------------------------------------------------
-void KTimeclockWindow::initStatusbar ()
-{
+void KTimeclockWindow::initStatusbar () {
     statusBar()->insertItem( QString::null, ID_STATUS_ENABLED, 0);
     statusBar()->insertItem( QString::null, ID_STATUS_SESSION, 0);
 }

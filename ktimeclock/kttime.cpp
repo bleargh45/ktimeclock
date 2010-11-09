@@ -12,7 +12,10 @@
 // Constructor.
 // ----------------------------------------------------------------------------
 KTimeclockTime::KTimeclockTime ()
-    : _hours(0), _minutes(0), _seconds(0), _dirty(true)
+    : _hours(0),
+    _minutes(0),
+    _seconds(0),
+    _dirty(true)
 {
 }
 
@@ -84,8 +87,7 @@ KTimeclockTime::KTimeclockTime (long seconds)
 // ----------------------------------------------------------------------------
 // Destructor.
 // ----------------------------------------------------------------------------
-KTimeclockTime::~KTimeclockTime ()
-{
+KTimeclockTime::~KTimeclockTime () {
 }
 
 // ----------------------------------------------------------------------------
@@ -94,10 +96,8 @@ KTimeclockTime::~KTimeclockTime ()
 // ----------------------------------------------------------------------------
 // returns the time as the total number of seconds.
 // ----------------------------------------------------------------------------
-long KTimeclockTime::asSeconds ()
-{
-    if (_dirty)
-    {
+long KTimeclockTime::asSeconds () {
+    if (_dirty) {
         this->_genCache();
     }
     return _cacheSeconds;
@@ -109,10 +109,8 @@ long KTimeclockTime::asSeconds ()
 // ----------------------------------------------------------------------------
 // Returns the time as a string formatted as HH:MM:SS.
 // ----------------------------------------------------------------------------
-QString KTimeclockTime::asString ()
-{
-    if (_dirty)
-    {
+QString KTimeclockTime::asString () {
+    if (_dirty) {
         this->_genCache();
     }
     return _cacheString;
@@ -124,8 +122,7 @@ QString KTimeclockTime::asString ()
 // ----------------------------------------------------------------------------
 // Sets the number of hours to 'hours'
 // ----------------------------------------------------------------------------
-void KTimeclockTime::hours (int hours)
-{
+void KTimeclockTime::hours (int hours) {
     _hours = hours;
     _dirty = true;
 }
@@ -136,8 +133,7 @@ void KTimeclockTime::hours (int hours)
 // ----------------------------------------------------------------------------
 // Returns the number of hours in the given time.
 // ----------------------------------------------------------------------------
-int KTimeclockTime::hours () const
-{
+int KTimeclockTime::hours () const {
     return _hours;
 }
 
@@ -147,8 +143,7 @@ int KTimeclockTime::hours () const
 // ----------------------------------------------------------------------------
 // Sets the number of minutes to 'minutes'.
 // ----------------------------------------------------------------------------
-void KTimeclockTime::minutes (int minutes)
-{
+void KTimeclockTime::minutes (int minutes) {
     _minutes = minutes;
     _dirty = true;
 }
@@ -159,8 +154,7 @@ void KTimeclockTime::minutes (int minutes)
 // ----------------------------------------------------------------------------
 // Returns the number of minutes in the given time.
 // ----------------------------------------------------------------------------
-int KTimeclockTime::minutes () const
-{
+int KTimeclockTime::minutes () const {
     return _minutes;
 }
 
@@ -170,8 +164,7 @@ int KTimeclockTime::minutes () const
 // ----------------------------------------------------------------------------
 // Sets the number of seconds to 'seconds'.
 // ----------------------------------------------------------------------------
-void KTimeclockTime::seconds (int seconds)
-{
+void KTimeclockTime::seconds (int seconds) {
     _seconds = seconds;
     _dirty = true;
 }
@@ -182,8 +175,7 @@ void KTimeclockTime::seconds (int seconds)
 // ----------------------------------------------------------------------------
 // Returns the number of seconds in the given time.
 // ----------------------------------------------------------------------------
-int KTimeclockTime::seconds () const
-{
+int KTimeclockTime::seconds () const {
     return _seconds;
 }
 
@@ -193,8 +185,7 @@ int KTimeclockTime::seconds () const
 // Regenerates our cached values of "total time in seconds" and "formatted time
 // string".
 // ----------------------------------------------------------------------------
-void KTimeclockTime::_genCache ()
-{
+void KTimeclockTime::_genCache () {
     // ------------------------------------------------------------------------
     // First, re-generate the total number of seconds.
     // ------------------------------------------------------------------------
@@ -219,8 +210,7 @@ void KTimeclockTime::_genCache ()
 // Helper method to do immediate conversion of a formatted time string to the
 // respective total number of seconds that it represents.
 // ----------------------------------------------------------------------------
-long KTimeclockTime::asSeconds (const QString& formatted)
-{
+long KTimeclockTime::asSeconds (const QString& formatted) {
     KTimeclockTime mytime( formatted );
     return mytime.asSeconds();
 }
@@ -233,8 +223,7 @@ long KTimeclockTime::asSeconds (const QString& formatted)
 // Helper method to do immediate conversion from a total number of seconds to
 // its respective formatted time string.
 // ----------------------------------------------------------------------------
-QString KTimeclockTime::asString (long seconds)
-{
+QString KTimeclockTime::asString (long seconds) {
     KTimeclockTime mytime( seconds );
     return mytime.asString();
 }

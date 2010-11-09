@@ -15,13 +15,12 @@
 class KTimeclockListItem;
 
 /**
- * Main view for the timeclock.  
+ * Main view for the timeclock.
  *
  * @short   Main timeclock list view.
  * @author  Graham TerMarsch (graham@howlingfrog.com)
  */
-class KTimeclock : public K3ListView
-{
+class KTimeclock : public K3ListView {
     Q_OBJECT
 
     public:

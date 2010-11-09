@@ -27,7 +27,9 @@
 // Constructs a new KTimeclock widget.
 // ----------------------------------------------------------------------------
 KTimeclock::KTimeclock (QWidget* parent)
-    : K3ListView(parent), _seconds_timer(NULL), _autosave_timer(NULL)
+    : K3ListView(parent)
+    , _seconds_timer(NULL)
+    , _autosave_timer(NULL)
 {
     // ------------------------------------------------------------------------
     // Create all of the columns that we're going to display.
@@ -61,8 +63,7 @@ KTimeclock::KTimeclock (QWidget* parent)
 // ----------------------------------------------------------------------------
 // Destructs the widget.
 // ----------------------------------------------------------------------------
-KTimeclock::~KTimeclock ()
-{
+KTimeclock::~KTimeclock () {
 }
 
 // ----------------------------------------------------------------------------
@@ -70,8 +71,7 @@ KTimeclock::~KTimeclock ()
 // ----------------------------------------------------------------------------
 // Loads the timeclock data from the XML data file.
 // ----------------------------------------------------------------------------
-void KTimeclock::loadData ()
-{
+void KTimeclock::loadData () {
     // ------------------------------------------------------------------------
     // Turn off updates for the display, and clear the list of items in our
     // list.
@@ -106,16 +106,13 @@ void KTimeclock::loadData ()
 // ----------------------------------------------------------------------------
 // Saves the data file, in XML format.
 // ----------------------------------------------------------------------------
-void KTimeclock::saveData ()
-{
+void KTimeclock::saveData () {
     // ------------------------------------------------------------------------
     // Get the path to the directory where the XML data file is to be stored.
     // If we can't find/create the directory, show an error to the user and
     // abort the save.
     // ------------------------------------------------------------------------
-    QString datadir = KGlobal::dirs()->saveLocation(
-                        "appdata", QString::null, true
-                        );
+    QString datadir = KGlobal::dirs()->saveLocation( "appdata", QString::null, true );
     if (datadir == QString::null) {
         QString msg = i18n( "Unable to find/create directory to save data to." );
         KMessageBox::error( this, msg );
@@ -191,8 +188,7 @@ void KTimeclock::saveData ()
 // ----------------------------------------------------------------------------
 // Loads up our column sizes out of our configuration file.
 // ----------------------------------------------------------------------------
-void KTimeclock::loadPreferences ()
-{
+void KTimeclock::loadPreferences () {
     emit status( "Loading data..." );
     KSharedConfigPtr cfg = KGlobal::config();
     KConfigGroup columnGroup( cfg, "Column Sizes" );
@@ -228,8 +224,7 @@ void KTimeclock::loadPreferences ()
 // ----------------------------------------------------------------------------
 // Saves out the sizes of our columns.
 // ----------------------------------------------------------------------------
-void KTimeclock::savePreferences ()
-{
+void KTimeclock::savePreferences () {
     emit status( "Saving data..." );
     KSharedConfigPtr cfg = KGlobal::config();
     KConfigGroup columnGroup( cfg, "Column Sizes" );
@@ -255,8 +250,7 @@ void KTimeclock::savePreferences ()
 // ----------------------------------------------------------------------------
 // Starts up the timeclock timer, having it go off once a second.
 // ----------------------------------------------------------------------------
-void KTimeclock::start ()
-{
+void KTimeclock::start () {
     if (_seconds_timer == NULL) {
         _seconds_timer = new QTimer(this);
         connect(_seconds_timer, SIGNAL(timeout()), this, SLOT(secondTimerEvent()));
@@ -274,8 +268,7 @@ void KTimeclock::start ()
 // ----------------------------------------------------------------------------
 // Stops the timeclock timer, if one is running.
 // ----------------------------------------------------------------------------
-void KTimeclock::stop ()
-{
+void KTimeclock::stop () {
     if (_seconds_timer != NULL) {
         _seconds_timer->stop();
         emit timerStopped();
@@ -289,8 +282,7 @@ void KTimeclock::stop ()
 // Prompts the user for information on a new top-level project to add, and adds
 // the project to the list.
 // ----------------------------------------------------------------------------
-void KTimeclock::addProject ()
-{
+void KTimeclock::addProject () {
     DlgAddEditProject* dlg = new DlgAddEditProject( this );
     dlg->setCaption( i18n("Add project") );
     if (dlg->exec()) {
@@ -308,8 +300,7 @@ void KTimeclock::addProject ()
 // Prompts the user for information on a new sub-project to add, and adds the
 // sub-project to the list as a child of the currently selected project.
 // ----------------------------------------------------------------------------
-void KTimeclock::addSubProject ()
-{
+void KTimeclock::addSubProject () {
     // ------------------------------------------------------------------------
     // Get the currently selected item and verify that its a project; we can't
     // add sub-projects to tasks or if no project is selected.
@@ -318,7 +309,7 @@ void KTimeclock::addSubProject ()
     if ( (selected == 0) || (!selected->isProject()) ) {
         KMessageBox::sorry( this,
             i18n("You must select a project to add a sub-project to.")
-            );
+        );
         return;
     }
 
@@ -343,8 +334,7 @@ void KTimeclock::addSubProject ()
 // Prompts the user for information on a new task to add, and adds the task to
 // the list as a child of the currently selected project/sub-project.
 // ----------------------------------------------------------------------------
-void KTimeclock::addTask ()
-{
+void KTimeclock::addTask () {
     // ------------------------------------------------------------------------
     // Get the currently selected item and verify that its a project; we can't
     // add tasks to other tasks.  We can, however, add tasks if nothing is
@@ -354,7 +344,7 @@ void KTimeclock::addTask ()
     if ( (selected != 0) && (!selected->isProject()) ) {
         KMessageBox::sorry( this,
             i18n("Cannot add tasks underneath other tasks.")
-            );
+        );
         return;
     }
 
@@ -383,8 +373,7 @@ void KTimeclock::addTask ()
 // (which can be either a project/sub-project, or a task).  Once edited, the
 // item in the list view is updated with the new information.
 // ----------------------------------------------------------------------------
-void KTimeclock::editItem ()
-{
+void KTimeclock::editItem () {
     // ------------------------------------------------------------------------
     // Get the currently selected item that we're supposed to be editing.
     // ------------------------------------------------------------------------
@@ -392,7 +381,7 @@ void KTimeclock::editItem ()
     if (selected == 0) {
         KMessageBox::sorry( this,
             i18n("You must select an item to edit.")
-            );
+        );
         return;
     }
 
@@ -446,8 +435,7 @@ void KTimeclock::editItem ()
 // Confirms with the user that he/she really wants to delete the currently
 // selected item, and then deletes it and all child items from the list view.
 // ----------------------------------------------------------------------------
-void KTimeclock::deleteItem ()
-{
+void KTimeclock::deleteItem () {
     // ------------------------------------------------------------------------
     // Get the currently selected item that we're supposed to be deleting.
     // ------------------------------------------------------------------------
@@ -455,7 +443,7 @@ void KTimeclock::deleteItem ()
     if (selected == 0) {
         KMessageBox::sorry( this,
             i18n("You must select an item to delete.")
-            );
+        );
         return;
     }
 
@@ -490,8 +478,7 @@ void KTimeclock::deleteItem ()
 // Clears all session time and total time spent for the currently selected
 // task.
 // ----------------------------------------------------------------------------
-void KTimeclock::clearTask ()
-{
+void KTimeclock::clearTask () {
     // ------------------------------------------------------------------------
     // Get the currently selected task that we're supposed to be clearing.
     // ------------------------------------------------------------------------
@@ -499,7 +486,7 @@ void KTimeclock::clearTask ()
     if ( (selected == 0) || (selected->isProject()) ) {
         KMessageBox::sorry( this,
             i18n("You must select a task to clear.")
-            );
+        );
         return;
     }
 
@@ -518,15 +505,14 @@ void KTimeclock::clearTask ()
 // and total time spent for all of the tasks, and then clears all of the time
 // spent.
 // ----------------------------------------------------------------------------
-void KTimeclock::clearAllTasks ()
-{
+void KTimeclock::clearAllTasks () {
     // ------------------------------------------------------------------------
     // First verify with the user that we really want to clear the time for all
     // of the items.
     // ------------------------------------------------------------------------
     int response = KMessageBox::questionYesNo( this,
-                    i18n("Are you sure you want to clear time for all items?")
-                    );
+        i18n("Are you sure you want to clear time for all items?")
+    );
 
     // ------------------------------------------------------------------------
     // If the user confirmed the clear, clear the time for all of the tasks.
@@ -546,15 +532,14 @@ void KTimeclock::clearAllTasks ()
 // affect the total time spent for the tasks, only the recording of how much
 // time has been spent on the task in this session.
 // ----------------------------------------------------------------------------
-void KTimeclock::clearSession ()
-{
+void KTimeclock::clearSession () {
     // ------------------------------------------------------------------------
     // First verify with the user that we really want to clear the session time
     // for all of the items.
     // ------------------------------------------------------------------------
     int response = KMessageBox::questionYesNo( this,
-                    i18n("Are you sure you want to clear all session time?")
-                    );
+        i18n("Are you sure you want to clear all session time?")
+    );
 
     // ------------------------------------------------------------------------
     // If the user confirmed the clear, clear the session time for all of the
@@ -564,8 +549,9 @@ void KTimeclock::clearSession ()
         // --------------------------------------------------------------------
         // Clear just the session time for all items.
         // --------------------------------------------------------------------
-        this->_recursiveClear( (KTimeclockListItem*)this->firstChild(),
-                               true, false );
+        this->_recursiveClear(
+            (KTimeclockListItem*)this->firstChild(), true, false
+        );
 
         // --------------------------------------------------------------------
         // Reset our own total session time and update our display.
@@ -633,8 +619,7 @@ void KTimeclock::autosaveTimerEvent() {
 // Recursively loads our timeclock information from an XML DOM tree, into a
 // series of list view items.
 // ----------------------------------------------------------------------------
-void KTimeclock::_dom_to_list (KTimeclockListItem* p_item, QDomElement elem)
-{
+void KTimeclock::_dom_to_list (KTimeclockListItem* p_item, QDomElement elem) {
     // ------------------------------------------------------------------------
     // Get the information that we want out of this node, and create a new list
     // item.
@@ -694,8 +679,7 @@ void KTimeclock::_dom_to_list (KTimeclockListItem* p_item, QDomElement elem)
 // Recursively saves out our timeclock information from our list view into an
 // XML DOM document.
 // ----------------------------------------------------------------------------
-void KTimeclock::_list_to_dom (QDomDocument doc, QDomElement p_elem, KTimeclockListItem* item)
-{
+void KTimeclock::_list_to_dom (QDomDocument doc, QDomElement p_elem, KTimeclockListItem* item) {
     // ------------------------------------------------------------------------
     // If we were given a bogus list item, exit early.
     // ------------------------------------------------------------------------
@@ -735,16 +719,18 @@ void KTimeclock::_list_to_dom (QDomDocument doc, QDomElement p_elem, KTimeclockL
     // Make sure we get any child elements taken care of.
     // ------------------------------------------------------------------------
     if (item->firstChild() != 0) {
-        this->_list_to_dom( doc, elem,
-                            (KTimeclockListItem*)item->firstChild() );
+        this->_list_to_dom(
+            doc, elem, (KTimeclockListItem*)item->firstChild()
+        );
     }
 
     // ------------------------------------------------------------------------
     // And then take care of any sibling elements we've got
     // ------------------------------------------------------------------------
     if (item->nextSibling() != 0) {
-        this->_list_to_dom( doc, p_elem,
-                            (KTimeclockListItem*)item->nextSibling() );
+        this->_list_to_dom(
+            doc, p_elem, (KTimeclockListItem*)item->nextSibling()
+        );
     }
 }
 
@@ -759,8 +745,7 @@ void KTimeclock::_list_to_dom (QDomDocument doc, QDomElement p_elem, KTimeclockL
 // item and all child items underneath it.  If 'session' is TRUE, session time
 // is cleared.  If 'total' is TRUE, total time spent is cleared.
 // ----------------------------------------------------------------------------
-void KTimeclock::_recursiveClear (KTimeclockListItem* item, bool session, bool total)
-{
+void KTimeclock::_recursiveClear (KTimeclockListItem* item, bool session, bool total) {
     // ------------------------------------------------------------------------
     // If we were given a bogus item, exit early.
     // ------------------------------------------------------------------------
@@ -796,8 +781,7 @@ void KTimeclock::_recursiveClear (KTimeclockListItem* item, bool session, bool t
 // Recursively updates the rate shown in the list view for the given list view
 // item and all child items underneath it.
 // ----------------------------------------------------------------------------
-void KTimeclock::_recursiveUpdateRate (KTimeclockListItem* item)
-{
+void KTimeclock::_recursiveUpdateRate (KTimeclockListItem* item) {
     // ------------------------------------------------------------------------
     // If we were given a bogus item, exit early.
     // ------------------------------------------------------------------------
@@ -831,8 +815,7 @@ void KTimeclock::_recursiveUpdateRate (KTimeclockListItem* item)
 // Resets the autosave timer, based on the information in our configuration
 // file for the delay between autosaves.
 // ----------------------------------------------------------------------------
-void KTimeclock::_setAutosaveTimer ()
-{
+void KTimeclock::_setAutosaveTimer () {
     if (_autosave_timer == NULL) {
         _autosave_timer = new QTimer(this);
         connect(_autosave_timer, SIGNAL(timeout()), this, SLOT(autosaveTimerEvent()));
@@ -863,14 +846,12 @@ void KTimeclock::_setAutosaveTimer ()
 // we're able to load information from the data file, returning FALSE
 // otherwise.
 // ----------------------------------------------------------------------------
-bool KTimeclock::_loadXMLData ()
-{
+bool KTimeclock::_loadXMLData () {
     // ------------------------------------------------------------------------
     // Get the full path to the XML data file that we're loading
     // ------------------------------------------------------------------------
-    QString filename = KGlobal::dirs()->findResource(
-                            "appdata", "ktimeclock.xml"
-                            );
+    QString filename
+        = KGlobal::dirs()->findResource( "appdata", "ktimeclock.xml" );
     QFile file( filename );
 
     // ------------------------------------------------------------------------

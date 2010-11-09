@@ -14,8 +14,7 @@
 // ----------------------------------------------------------------------------
 // Sets some default values; used by our constructors.
 // ----------------------------------------------------------------------------
-void KTimeclockListItem::setDefaults ()
-{
+void KTimeclockListItem::setDefaults () {
     this->setProject( false );
 }
 
@@ -25,8 +24,7 @@ void KTimeclockListItem::setDefaults ()
 // ----------------------------------------------------------------------------
 // Sets the description associated with this list item.
 // ----------------------------------------------------------------------------
-void KTimeclockListItem::setDescription (const QString& desc)
-{
+void KTimeclockListItem::setDescription (const QString& desc) {
     this->setText( COL_DESCRIPTION, desc );
 }
 
@@ -36,8 +34,7 @@ void KTimeclockListItem::setDescription (const QString& desc)
 // ----------------------------------------------------------------------------
 // Gets the description for this item and returns it.
 // ----------------------------------------------------------------------------
-QString KTimeclockListItem::description () const
-{
+QString KTimeclockListItem::description () const {
     return this->text( COL_DESCRIPTION );
 }
 
@@ -49,8 +46,7 @@ QString KTimeclockListItem::description () const
 // which are marks as _NOT_ being "projects"; for projects this method does
 // nothing.
 // ----------------------------------------------------------------------------
-void KTimeclockListItem::setTimeSpent (long timespent)
-{
+void KTimeclockListItem::setTimeSpent (long timespent) {
     // ------------------------------------------------------------------------
     // Exit early if we're a project.
     // ------------------------------------------------------------------------
@@ -83,8 +79,7 @@ void KTimeclockListItem::setTimeSpent (long timespent)
 //
 // The format of 'timespent' provided must be formatted as HH:MM:SS.
 // ----------------------------------------------------------------------------
-void KTimeclockListItem::setTimeSpent (const QString& timespent)
-{
+void KTimeclockListItem::setTimeSpent (const QString& timespent) {
     this->setTimeSpent( KTimeclockTime::asSeconds( timespent ) );
 }
 
@@ -95,8 +90,7 @@ void KTimeclockListItem::setTimeSpent (const QString& timespent)
 // Gets the total time spent so far on this item and returns it as a string
 // value.
 // ----------------------------------------------------------------------------
-QString KTimeclockListItem::timeSpent () const
-{
+QString KTimeclockListItem::timeSpent () const {
     return this->text( COL_TEXTTOTAL );
 }
 
@@ -109,8 +103,7 @@ QString KTimeclockListItem::timeSpent () const
 // The value of 'rate' provided is to be formatted as a numeric value; no other
 // character values are allowed within this string.
 // ----------------------------------------------------------------------------
-void KTimeclockListItem::setRate (const QString& rate)
-{
+void KTimeclockListItem::setRate (const QString& rate) {
     this->setText( COL_RATE, rate );
 
     // ------------------------------------------------------------------------
@@ -131,8 +124,7 @@ void KTimeclockListItem::setRate (const QString& rate)
 // Same as 'setRate()' above, but with different parameters.
 // ----------------------------------------------------------------------------
 /*
-void KTimeclockListItem::setRate (double rate)
-{
+void KTimeclockListItem::setRate (double rate) {
     QString tmp;
     tmp.setNum( rate );
     this->setRate( tmp );
@@ -145,8 +137,7 @@ void KTimeclockListItem::setRate (double rate)
 // ----------------------------------------------------------------------------
 // Gets the rate for this item and returns it.
 // ----------------------------------------------------------------------------
-QString KTimeclockListItem::rate () const
-{
+QString KTimeclockListItem::rate () const {
     return this->text( COL_RATE );
 }
 
@@ -163,8 +154,7 @@ QString KTimeclockListItem::rate () const
 // parent.  As well, items with relative earnings rates (e.g. "*5", "/2") are
 // calculated against their parents effective earnings rate.
 // ----------------------------------------------------------------------------
-double KTimeclockListItem::effectiveRate () const
-{
+double KTimeclockListItem::effectiveRate () const {
     // ------------------------------------------------------------------------
     // If we've been given an explicit rate, see if its considered "relative"
     // to our inherited rate.
@@ -197,20 +187,16 @@ double KTimeclockListItem::effectiveRate () const
             // ----------------------------------------------------------------
             // Calculate our relative rate, and return it to the caller.
             // ----------------------------------------------------------------
-            if (r.left( 1 ) == "*")
-            {
+            if (r.left( 1 ) == "*") {
                 return (base * modifier);
             }
-            else if (r.left( 1 ) == "+")
-            {
+            else if (r.left( 1 ) == "+") {
                 return (base + modifier);
             }
-            else if (r.left( 1 ) == "-")
-            {
+            else if (r.left( 1 ) == "-") {
                 return (base - modifier);
             }
-            else if (r.left( 1 ) == "/")
-            {
+            else if (r.left( 1 ) == "/") {
                 // ------------------------------------------------------------
                 // Check for divide-by-zero possibilities first.
                 // ------------------------------------------------------------
@@ -221,20 +207,17 @@ double KTimeclockListItem::effectiveRate () const
                 // ------------------------------------------------------------
                 return (base / modifier);
             }
-            else
-            {
+            else {
                 qWarning( "SHOULDN'T BE HERE! (KTimeclockListItem::effectiveRate())" );
                 return 0.0;
             }
         }
-        else
-        {
+        else {
             // ----------------------------------------------------------------
             // Remove any leading '=' character that might be present (is
             // optional).
             // ----------------------------------------------------------------
-            if (r.left( 1 ) == "=")
-            {
+            if (r.left( 1 ) == "=") {
                 r.remove( 0, 1 );
             }
 
@@ -248,8 +231,7 @@ double KTimeclockListItem::effectiveRate () const
     // ------------------------------------------------------------------------
     // Otherwise, if we've got a parent list item, return its effective rate.
     // ------------------------------------------------------------------------
-    if (this->parent())
-    {
+    if (this->parent()) {
         KTimeclockListItem* par = (KTimeclockListItem*)this->parent();
         return par->effectiveRate();
     }
@@ -268,8 +250,7 @@ double KTimeclockListItem::effectiveRate () const
 // which are marked as _NOT_ being "projects"; for projects this method does
 // nothing.
 // ----------------------------------------------------------------------------
-void KTimeclockListItem::setSessionTime (long sessiontime)
-{
+void KTimeclockListItem::setSessionTime (long sessiontime) {
     // ------------------------------------------------------------------------
     // Exit early if we're a project.
     // ------------------------------------------------------------------------
@@ -297,8 +278,7 @@ void KTimeclockListItem::setSessionTime (long sessiontime)
 //
 // The value of 'sessiontime' provided is to be formatted as HH:MM:SS.
 // ----------------------------------------------------------------------------
-void KTimeclockListItem::setSessionTime (const QString& sessiontime)
-{
+void KTimeclockListItem::setSessionTime (const QString& sessiontime) {
     this->setSessionTime( KTimeclockTime::asSeconds( sessiontime ) );
 }
 
@@ -309,8 +289,7 @@ void KTimeclockListItem::setSessionTime (const QString& sessiontime)
 // Gets the time spent on this item in this session and returns it as a string
 // value.
 // ----------------------------------------------------------------------------
-QString KTimeclockListItem::sessionTime () const
-{
+QString KTimeclockListItem::sessionTime () const {
     return this->text( COL_TEXTSESSION );
 }
 
@@ -320,8 +299,7 @@ QString KTimeclockListItem::sessionTime () const
 // ----------------------------------------------------------------------------
 // Sets the total earnings so far for this item.
 // ----------------------------------------------------------------------------
-void KTimeclockListItem::setEarnings (const QString& earnings)
-{
+void KTimeclockListItem::setEarnings (const QString& earnings) {
     // ------------------------------------------------------------------------
     // If we're a project, skip setting this field
     // ------------------------------------------------------------------------
@@ -339,8 +317,7 @@ void KTimeclockListItem::setEarnings (const QString& earnings)
 // ----------------------------------------------------------------------------
 // Gets the total earnings so far for this item and returns it.
 // ----------------------------------------------------------------------------
-QString KTimeclockListItem::earnings () const
-{
+QString KTimeclockListItem::earnings () const {
     return this->text( COL_EARNINGS );
 }
 
@@ -349,8 +326,7 @@ QString KTimeclockListItem::earnings () const
 // ----------------------------------------------------------------------------
 // Recalculates the effective earnings rate for this item.
 // ----------------------------------------------------------------------------
-void KTimeclockListItem::recalculateRate ()
-{
+void KTimeclockListItem::recalculateRate () {
     QString tmp;
     tmp.sprintf( "%0.2f", this->effectiveRate() );
     this->setText( COL_EFFECTIVERATE, tmp );
@@ -362,8 +338,7 @@ void KTimeclockListItem::recalculateRate ()
 // Recalculates the earnings for this list item, based on the items effective
 // earnings rate.
 // ----------------------------------------------------------------------------
-void KTimeclockListItem::recalculateEarnings ()
-{
+void KTimeclockListItem::recalculateEarnings () {
     // ------------------------------------------------------------------------
     // Get the total time spent on this item.
     // ------------------------------------------------------------------------
@@ -394,11 +369,9 @@ void KTimeclockListItem::recalculateEarnings ()
 // If TRUE, this item is set to be a project, while if FALSE (the default) it
 // is set to be a task.
 // ----------------------------------------------------------------------------
-void KTimeclockListItem::setProject (bool isproject)
-{
+void KTimeclockListItem::setProject (bool isproject) {
     this->_project = isproject;
-    if (isproject)
-    {
+    if (isproject) {
         // --------------------------------------------------------------------
         // Projects get a nice little pixmap.
         // --------------------------------------------------------------------
@@ -411,8 +384,7 @@ void KTimeclockListItem::setProject (bool isproject)
         this->setText( COL_TEXTSESSION, QString() );
         this->setText( COL_TEXTTOTAL, QString() );
     }
-    else
-    {
+    else {
         // --------------------------------------------------------------------
         // Tasks get empty pixmaps.
         // --------------------------------------------------------------------
@@ -425,8 +397,7 @@ void KTimeclockListItem::setProject (bool isproject)
 // ----------------------------------------------------------------------------
 // Returns a value stating whether or not this item is a project.
 // ----------------------------------------------------------------------------
-bool KTimeclockListItem::isProject () const
-{
+bool KTimeclockListItem::isProject () const {
     return this->_project;
 }
 
@@ -436,8 +407,7 @@ bool KTimeclockListItem::isProject () const
 // ----------------------------------------------------------------------------
 // Increments the total time spent on this item by the given number of seconds.
 // ----------------------------------------------------------------------------
-void KTimeclockListItem::incrementTimeSpent (int seconds)
-{
+void KTimeclockListItem::incrementTimeSpent (int seconds) {
     // ------------------------------------------------------------------------
     // Get the current time spent in seconds and increment it by the given
     // value.
@@ -458,8 +428,7 @@ void KTimeclockListItem::incrementTimeSpent (int seconds)
 // Increments the time spent on this item in this session by the given number
 // of seconds.
 // ----------------------------------------------------------------------------
-void KTimeclockListItem::incrementSessionTime (int seconds)
-{
+void KTimeclockListItem::incrementSessionTime (int seconds) {
     // ------------------------------------------------------------------------
     // Get the current session time in seconds and increment it by the given
     // value.

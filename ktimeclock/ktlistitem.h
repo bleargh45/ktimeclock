@@ -16,8 +16,7 @@
  * @short   Custom list view class for KTimeclock.
  * @author  Graham TerMarsh (graham@howlingfrog.com)
  */
-class KTimeclockListItem : public Q3ListViewItem
-{
+class KTimeclockListItem : public Q3ListViewItem {
     public:
         /**
          * Constructor with QListView parent.
@@ -25,7 +24,7 @@ class KTimeclockListItem : public Q3ListViewItem
          * @param   parent  QListView parent
          */
         KTimeclockListItem (Q3ListView* parent)
-            : Q3ListViewItem( parent )
+            : Q3ListViewItem(parent)
         {
             this->setDefaults();
         }
@@ -36,7 +35,7 @@ class KTimeclockListItem : public Q3ListViewItem
          * @param   parent  KTimeclockListItem parent
          */
         KTimeclockListItem (KTimeclockListItem* parent)
-            : Q3ListViewItem( parent )
+            : Q3ListViewItem(parent)
         {
             this->setDefaults();
         }

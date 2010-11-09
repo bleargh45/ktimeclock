@@ -17,8 +17,7 @@
  * @short   Time format helper class
  * @author  Graham TerMarsch (graham@howlingfrog.com)
  */
-class KTimeclockTime
-{
+class KTimeclockTime {
     public:
         /**
          * Constructor.

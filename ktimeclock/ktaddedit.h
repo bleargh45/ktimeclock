@@ -24,8 +24,7 @@
  * @short   Dialog to add/edit Projects/Sub-projects.
  * @author  Graham TerMarsch (graham@howlingfrog.com)
  */
-class DlgAddEditProject : public KDialog
-{
+class DlgAddEditProject : public KDialog {
     Q_OBJECT
 
     public:
@@ -108,8 +107,7 @@ class DlgAddEditProject : public KDialog
  * @short   Dialog to add/edit Tasks.
  * @author  Graham TerMarsch (graham@howlingfrog.com)
  */
-class DlgAddEditTask : public DlgAddEditProject
-{
+class DlgAddEditTask : public DlgAddEditProject {
     Q_OBJECT
 
     public:

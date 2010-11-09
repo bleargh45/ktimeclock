@@ -85,8 +85,7 @@ DlgAddEditProject::DlgAddEditProject (QWidget* parent)
 // ----------------------------------------------------------------------------
 // Destructs the widget.
 // ----------------------------------------------------------------------------
-DlgAddEditProject::~DlgAddEditProject ()
-{
+DlgAddEditProject::~DlgAddEditProject () {
 }
 
 // ----------------------------------------------------------------------------
@@ -95,8 +94,7 @@ DlgAddEditProject::~DlgAddEditProject ()
 // ----------------------------------------------------------------------------
 // Sets the description of the project to 'desc'.
 // ----------------------------------------------------------------------------
-void DlgAddEditProject::setDescription (const QString& desc)
-{
+void DlgAddEditProject::setDescription (const QString& desc) {
     _txtDescription->setText( desc );
 }
 
@@ -106,16 +104,14 @@ void DlgAddEditProject::setDescription (const QString& desc)
 // ----------------------------------------------------------------------------
 // Returns the description of the project.
 // ----------------------------------------------------------------------------
-QString DlgAddEditProject::description ()
-{
+QString DlgAddEditProject::description () {
     return _txtDescription->text();
 }
 
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
-void DlgAddEditProject::setRate (const QString& rate)
-{
+void DlgAddEditProject::setRate (const QString& rate) {
     // ------------------------------------------------------------------------
     // Split the rate string into two pieces; the rate modifier character, and
     // the actual rate itself.  We'll do this by presuming that everything
@@ -123,8 +119,7 @@ void DlgAddEditProject::setRate (const QString& rate)
     // after it is the rate itself).
     // ------------------------------------------------------------------------
     unsigned int idx=0;
-    while (idx < rate.length())
-    {
+    while (idx < rate.length()) {
         if (rate[idx].isDigit()) { break; }
         idx++;
     }
@@ -154,14 +149,12 @@ void DlgAddEditProject::setRate (const QString& rate)
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
 // ----------------------------------------------------------------------------
-QString DlgAddEditProject::rate ()
-{
+QString DlgAddEditProject::rate () {
     // ------------------------------------------------------------------------
     // If we were told to use the parent's rate, return an empty string; we
     // don't have any explicit rate.
     // ------------------------------------------------------------------------
-    if (_comboRateModifier->currentText() == i18n("Parent's rate"))
-    {
+    if (_comboRateModifier->currentText() == i18n("Parent's rate")) {
         return QString::null;
     }
 
@@ -169,10 +162,11 @@ QString DlgAddEditProject::rate ()
     // Build up a rate including both the rate modifier and the rate itself.
     // ------------------------------------------------------------------------
     QString result;
-    result.sprintf( "%s%0.2f", 
-                    _comboRateModifier->currentText().data(),
-                    _spinRate->value()
-                  );
+    result.sprintf(
+        "%s%0.2f",
+        _comboRateModifier->currentText().data(),
+        _spinRate->value()
+    );
 
     // ------------------------------------------------------------------------
     // Done building up the rate, return it to the caller.
@@ -226,8 +220,7 @@ DlgAddEditTask::DlgAddEditTask (QWidget* parent)
 // ----------------------------------------------------------------------------
 // Destructs the widget.
 // ----------------------------------------------------------------------------
-DlgAddEditTask::~DlgAddEditTask ()
-{
+DlgAddEditTask::~DlgAddEditTask () {
 }
 
 // ----------------------------------------------------------------------------
@@ -239,8 +232,7 @@ DlgAddEditTask::~DlgAddEditTask ()
 //
 // The format of 'timespent' should be HH:MM:SS.
 // ----------------------------------------------------------------------------
-void DlgAddEditTask::setTimeSpent (const QString& timespent)
-{
+void DlgAddEditTask::setTimeSpent (const QString& timespent) {
     KTimeclockTime mytime( timespent );
     _spinHours->setValue( mytime.hours() );
     _spinMinutes->setValue( mytime.minutes() );
@@ -253,12 +245,10 @@ void DlgAddEditTask::setTimeSpent (const QString& timespent)
 // ----------------------------------------------------------------------------
 // Returns the current time spent on this task, in the format of HH:MM:SS.
 // ----------------------------------------------------------------------------
-QString DlgAddEditTask::timeSpent ()
-{
+QString DlgAddEditTask::timeSpent () {
     KTimeclockTime mytime;
     mytime.hours( _spinHours->value() );
     mytime.minutes( _spinMinutes->value() );
     mytime.seconds( _spinSeconds->value() );
     return mytime.asString();
 }
-

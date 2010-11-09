@@ -18,8 +18,7 @@ class KTimeclockDocker;
  * @short   Main timeclock window.
  * @author  Graham TerMarsch (graham@howlingfrog.com)
  */
-class KTimeclockWindow : public KXmlGuiWindow
-{
+class KTimeclockWindow : public KXmlGuiWindow {
     Q_OBJECT
 
     public:
@@ -55,7 +54,7 @@ class KTimeclockWindow : public KXmlGuiWindow
 
         /**
          * Shows the provided timer state in the status bar.
-         * 
+         *
          * @param   state   Timer state to show in the status bar.
          */
         void updateState (const QString state);

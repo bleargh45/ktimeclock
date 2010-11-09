@@ -23,8 +23,7 @@ KTimeclockDocker::KTimeclockDocker (QWidget* parent)
     // Load up all of the icons that we're going to use when animating the
     // clock in the task bar.
     // ------------------------------------------------------------------------
-    for (int idx=1; idx<=12; idx++)
-    {
+    for (int idx=1; idx<=12; idx++) {
         QString file;
         file.sprintf( "dockicon-%d", idx );
         _icons.insert( idx, KSystemTrayIcon::loadIcon(file) );
@@ -41,8 +40,7 @@ KTimeclockDocker::KTimeclockDocker (QWidget* parent)
 // ----------------------------------------------------------------------------
 // Destructs the widget.
 // ----------------------------------------------------------------------------
-KTimeclockDocker::~KTimeclockDocker ()
-{
+KTimeclockDocker::~KTimeclockDocker () {
 }
 
 // ----------------------------------------------------------------------------
@@ -51,10 +49,8 @@ KTimeclockDocker::~KTimeclockDocker ()
 // To be called whenever the timer is started for the timeclock.  When called,
 // this method starts the animation sequence in the system tray.
 // ----------------------------------------------------------------------------
-void KTimeclockDocker::timerStarted ()
-{
-    if (_timer_id == 0)
-    {
+void KTimeclockDocker::timerStarted () {
+    if (_timer_id == 0) {
         _timer_id = startTimer( 1000 );
     }
 }
@@ -65,8 +61,7 @@ void KTimeclockDocker::timerStarted ()
 // To be called whenever the timer is stopped for the timeclock.  When called,
 // this method stops the animation sequence in the system tray.
 // ----------------------------------------------------------------------------
-void KTimeclockDocker::timerStopped ()
-{
+void KTimeclockDocker::timerStopped () {
     killTimer( _timer_id );
     _timer_id = 0;
 }
@@ -77,8 +72,7 @@ void KTimeclockDocker::timerStopped ()
 // Called each time our timer "ticks".  We move onto the next frame in the
 // animation sequence and update the icon in the system tray.
 // ----------------------------------------------------------------------------
-void KTimeclockDocker::timerEvent (QTimerEvent*)
-{
+void KTimeclockDocker::timerEvent (QTimerEvent*) {
     // ------------------------------------------------------------------------
     // Redraw the icon in the dock with the next frame in the animation
     // sequence.

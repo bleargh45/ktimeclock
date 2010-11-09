@@ -19,8 +19,7 @@
  * @short   System tray docking widget for KTimeclock.
  * @author  Graham TerMarsch (graham@howlingfrog.com)
  */
-class KTimeclockDocker : public KSystemTrayIcon
-{
+class KTimeclockDocker : public KSystemTrayIcon {
     Q_OBJECT
 
     public:
