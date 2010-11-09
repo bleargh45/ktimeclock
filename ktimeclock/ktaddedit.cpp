@@ -133,6 +133,13 @@ void DlgAddEditProject::setRate (const QString& rate)
     QString rateval  = rate.mid( idx );
 
     // ------------------------------------------------------------------------
+    // XXX: hack - hardcode mapping for "Parent's rate"
+    // ------------------------------------------------------------------------
+    if (modifier.isEmpty()) {
+        modifier = i18n("Parent's rate");
+    }
+
+    // ------------------------------------------------------------------------
     // Find the modifier character in the combo box and make it the current
     // selection.
     // ------------------------------------------------------------------------
