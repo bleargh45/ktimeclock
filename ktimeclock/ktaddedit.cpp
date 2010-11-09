@@ -57,12 +57,12 @@ DlgAddEditProject::DlgAddEditProject (QWidget* parent)
     _layout->addWidget( lblRate, 1, 0, Qt::AlignRight );
 
     _comboRateModifier = new KComboBox( page );
-    _comboRateModifier->insertItem( i18n("Parent's rate") );
-    _comboRateModifier->insertItem( "=" );
-    _comboRateModifier->insertItem( "+" );
-    _comboRateModifier->insertItem( "-" );
-    _comboRateModifier->insertItem( "*" );
-    _comboRateModifier->insertItem( "/" );
+    _comboRateModifier->addItem( i18n("Parent's rate") );
+    _comboRateModifier->addItem( "=" );
+    _comboRateModifier->addItem( "+" );
+    _comboRateModifier->addItem( "-" );
+    _comboRateModifier->addItem( "*" );
+    _comboRateModifier->addItem( "/" );
     _layout->addWidget( _comboRateModifier, 1, 1, Qt::AlignRight );
 
     _spinRate = new KDoubleNumInput( page );
