@@ -47,7 +47,7 @@ DlgAddEditProject::DlgAddEditProject (QWidget* parent)
 
     _txtDescription = new KLineEdit( page );
     _txtDescription->setMinimumWidth( this->fontMetrics().maxWidth() * 20 );
-    _layout->addMultiCellWidget( _txtDescription, 0, 0, 1, 4, Qt::AlignLeft );
+    _layout->addWidget( _txtDescription, 0, 1, 1, 3, Qt::AlignLeft );
 
     // ------------------------------------------------------------------------
     // Drop/Spin box for the rate.
