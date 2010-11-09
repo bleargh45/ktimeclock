@@ -202,11 +202,11 @@ DlgAddEditTask::DlgAddEditTask (QWidget* parent)
     _layout->addWidget( _spinHours, 2, 1, Qt::AlignLeft );
 
     _spinMinutes = new KIntNumInput( page );
-    _spinMinutes->setRange( 0, 59, 1, false );
+    _spinMinutes->setRange( 0, 59, 1 );
     _layout->addWidget( _spinMinutes, 2, 2, Qt::AlignLeft );
 
     _spinSeconds = new KIntNumInput( page );
-    _spinSeconds->setRange( 0, 59, 1, false );
+    _spinSeconds->setRange( 0, 59, 1 );
     _layout->addWidget( _spinSeconds, 2, 3, Qt::AlignLeft );
 
     // ------------------------------------------------------------------------
