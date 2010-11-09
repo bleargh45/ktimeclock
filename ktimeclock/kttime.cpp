@@ -35,7 +35,7 @@ KTimeclockTime::KTimeclockTime (const QString& formatted)
     // ------------------------------------------------------------------------
     // Get the hours.
     // ------------------------------------------------------------------------
-    length  = formatted.find( ':', offset ) - offset;
+    length  = formatted.indexOf( ':', offset ) - offset;
     tmp     = formatted.mid( offset, length );
     _hours  = tmp.toInt();
     offset += length + 1;
@@ -43,7 +43,7 @@ KTimeclockTime::KTimeclockTime (const QString& formatted)
     // ------------------------------------------------------------------------
     // Get the minutes.
     // ------------------------------------------------------------------------
-    length   = formatted.find( ':', offset ) - offset;
+    length   = formatted.indexOf( ':', offset ) - offset;
     tmp      = formatted.mid( offset, length );
     _minutes = tmp.toInt();
     offset  += length + 1;
