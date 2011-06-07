@@ -10,6 +10,7 @@ Packager:   graham@howlingfrog.com
 
 BuildRequires:  cmake >= 2.4.6
 BuildRequires:  kdelibs-devel
+BuildRequires:  gcc-c++
 
 Summary:    Task-based timeclock for KDE.
 %description
