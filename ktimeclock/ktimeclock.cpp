@@ -55,6 +55,14 @@ KTimeclock::KTimeclock (QWidget* parent)
     // Clear the current session time.
     // ------------------------------------------------------------------------
     _session_time = 0;
+
+    // ------------------------------------------------------------------------
+    // Set up our double-click handler
+    // ------------------------------------------------------------------------
+    connect(
+        this, SIGNAL(doubleClicked(Q3ListViewItem*)),
+        this, SLOT(editItem(Q3ListViewItem*))
+    );
 }
 
 // ----------------------------------------------------------------------------
@@ -372,6 +380,10 @@ void KTimeclock::addTask () {
 // (which can be either a project/sub-project, or a task).  Once edited, the
 // item in the list view is updated with the new information.
 // ----------------------------------------------------------------------------
+void KTimeclock::editItem (Q3ListViewItem* item) {
+    this->editItem();
+}
+
 void KTimeclock::editItem () {
     // ------------------------------------------------------------------------
     // Get the currently selected item that we're supposed to be editing.

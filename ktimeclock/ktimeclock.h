@@ -100,6 +100,7 @@ class KTimeclock : public K3ListView {
          * information.
          */
         void editItem ();
+        void editItem (Q3ListViewItem* item);
 
         /**
          * Confirms with the user that he/she really wants to delete the
