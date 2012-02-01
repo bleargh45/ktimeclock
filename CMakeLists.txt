@@ -1,5 +1,5 @@
 project(ktimeclock)
-set(PROJECT_VERSION "4.0.1")
+set(PROJECT_VERSION "4.0.2")
 
 find_package(KDE4 REQUIRED)
 

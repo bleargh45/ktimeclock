@@ -1,5 +1,5 @@
 Name:       ktimeclock
-Version:    4.0.1
+Version:    4.0.2
 Release:    0%{dist}
 License:    Artistic
 Group:      Office
@@ -45,6 +45,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_prefix}/share/icons/hicolor/*/apps/ktimeclock.svgz
 
 %changelog
+* Wed Feb 1 2012 Graham TerMarsch (graham@howlingfrog.com) - 4.0.2-0
+- Don't alert on lost ticks, just add them in like we never missed them.
+
 * Wed Jan 11 2012 Graham TerMarsch (graham@howlingfrog.com) - 4.0.1-0
 - Double-click handler
 
