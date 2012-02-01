@@ -581,7 +581,7 @@ void KTimeclock::secondTimerEvent() {
     int ticks = _last_tick.secsTo( timeNow );
 
     // Update the last timer tick to be the current time.
-    _last_tick = QTime::currentTime();
+    _last_tick = timeNow;
 
     // Get the selected item and increment the time spent on it.
     KTimeclockListItem* selected = (KTimeclockListItem*)this->currentItem();
