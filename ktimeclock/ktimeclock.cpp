@@ -574,20 +574,11 @@ void KTimeclock::clearSession () {
 }
 
 void KTimeclock::secondTimerEvent() {
-    // Compare the time of the "last timer tick" against the current time,
-    // to make sure that we're not losing ticks.
+    // Find out how many timer ticks have occurred since we were last woken up.
+    // Although it _should_ just be a single tick, if the UI blocked for some
+    // reason we could be out multiple ticks.
     QTime timeNow = QTime::currentTime();
-    int lost_ticks = _last_tick.secsTo( timeNow );
-    if (lost_ticks > 1) {
-        // Show an error to the user.
-        QString msg;
-//        QTextOStream(&msg) << "Lost " << lost_ticks << " timer ticks!";
-QTextStream(&msg) << "Lost " << lost_ticks << " timer ticks!" << "\n"
-  << "_last_tick[" << _last_tick.toString() << "]" << "\n"
-  << "currentTime[" << timeNow.toString() << "]" << "\n\n";
-_last_tick = QTime::currentTime(); // messagebox is synchronous; update or we show infinitely
-        KMessageBox::error( this, msg );
-    }
+    int ticks = _last_tick.secsTo( timeNow );
 
     // Update the last timer tick to be the current time.
     _last_tick = QTime::currentTime();
@@ -603,15 +594,15 @@ _last_tick = QTime::currentTime(); // messagebox is synchronous; update or we sh
             // ------------------------------------------------------------
             // Increment the time spent on this one item.
             // ------------------------------------------------------------
-            selected->incrementTimeSpent( 1 );
-            selected->incrementSessionTime( 1 );
+            selected->incrementTimeSpent( ticks );
+            selected->incrementSessionTime( ticks );
             selected->repaint();
 
             // ------------------------------------------------------------
             // Increment the total session time that we've marked off
             // against various tasks and update our own display.
             // ------------------------------------------------------------
-            _session_time ++;
+            _session_time += ticks;
             emit sessionTime( KTimeclockTime::asString(_session_time) );
         }
     }
