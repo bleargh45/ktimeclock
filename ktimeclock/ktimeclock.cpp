@@ -577,8 +577,15 @@ void KTimeclock::secondTimerEvent() {
     // Find out how many timer ticks have occurred since we were last woken up.
     // Although it _should_ just be a single tick, if the UI blocked for some
     // reason we could be out multiple ticks.
+    //
+    // Also have to watch out for cases where we may be missing a tick (as
+    // we've slept 999ms or less); Qt calculates that as "0s" when from our
+    // perspective that's still "one tick".
     QTime timeNow = QTime::currentTime();
     int ticks = _last_tick.secsTo( timeNow );
+    if (ticks <= 0) {
+        ticks = 1;
+    }
 
     // Update the last timer tick to be the current time.
     _last_tick = timeNow;
