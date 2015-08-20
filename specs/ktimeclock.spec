@@ -1,6 +1,6 @@
 Name:       ktimeclock
-Version:    4.0.3
-Release:    0%{dist}
+Version:    4.0.4
+Release:    1%{dist}
 License:    Artistic
 Group:      Office
 URL:        http://www.howlingfrog.com/opensource/ktimeclock/
