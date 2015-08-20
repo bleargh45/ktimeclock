@@ -212,6 +212,7 @@ void KTimeclockWindow::save () {
 // Saves our application data and quits the application.
 // ----------------------------------------------------------------------------
 void KTimeclockWindow::quit () {
+    _timeclock->stop();
     this->save();
     kapp->quit();
 }
