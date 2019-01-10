@@ -1,5 +1,5 @@
 Name:       ktimeclock
-Version:    4.0.4
+Version:    4.0.5
 Release:    1%{dist}
 License:    Artistic
 Group:      Office
