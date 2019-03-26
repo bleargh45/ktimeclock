@@ -19,20 +19,11 @@
 KTimeclockDocker::KTimeclockDocker (QWidget* parent)
     : KSystemTrayIcon( parent ), _timer_id(0), _frame(0)
 {
-    // ------------------------------------------------------------------------
-    // Load up all of the icons that we're going to use when animating the
-    // clock in the task bar.
-    // ------------------------------------------------------------------------
-    for (int idx=1; idx<=12; idx++) {
-        QString file;
-        file.sprintf( "dockicon-%d", idx );
-        _icons.insert( idx, KSystemTrayIcon::loadIcon(file) );
-    }
+    // Load up the icons that we're going to show in the task bar.
+    _icons.insert(1, KSystemTrayIcon::loadIcon("clock"));
+    _icons.insert(2, KSystemTrayIcon::loadIcon("dockicon-1"));
 
-    // ------------------------------------------------------------------------
-    // Start off showing the first dock icon.
-    // ------------------------------------------------------------------------
-    this->setIcon( _icons.at(_frame++) );
+    this->setIcon(_icons.at(0));
 }
 
 // ----------------------------------------------------------------------------
@@ -50,9 +41,7 @@ KTimeclockDocker::~KTimeclockDocker () {
 // this method starts the animation sequence in the system tray.
 // ----------------------------------------------------------------------------
 void KTimeclockDocker::timerStarted () {
-    if (_timer_id == 0) {
-        _timer_id = startTimer( 1000 );
-    }
+    this->setIcon(_icons.at(1));
 }
 
 // ----------------------------------------------------------------------------
@@ -62,8 +51,7 @@ void KTimeclockDocker::timerStarted () {
 // this method stops the animation sequence in the system tray.
 // ----------------------------------------------------------------------------
 void KTimeclockDocker::timerStopped () {
-    killTimer( _timer_id );
-    _timer_id = 0;
+    this->setIcon(_icons.at(0));
 }
 
 // ----------------------------------------------------------------------------
