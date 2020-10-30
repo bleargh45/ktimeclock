@@ -1,6 +1,6 @@
 Name:       ktimeclock
 Version:    4.0.6
-Release:    1%{dist}
+Release:    2%{dist}
 License:    Artistic
 Group:      Office
 URL:        http://www.howlingfrog.com/opensource/ktimeclock/
@@ -24,11 +24,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %build
 %cmake .
-make VERBOSE=1 %{?_smp_mflags}
+%cmake_build
 
 %install
-rm -rf $RPM_BUILD_ROOT
-make install DESTDIR=$RPM_BUILD_ROOT
+%cmake_install
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -45,6 +44,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_prefix}/share/icons/hicolor/*/apps/ktimeclock.svgz
 
 %changelog
+* Fri Oct 30 2020 Graham TerMarsch (graham@howlingfrog.com) - 4.0.6-2
+- Update for Fedora-33, and CMake based macros.
+
 * Wed Feb 15 2012 Graham TerMarsch (graham@howlingfrog.com) - 4.0.3-0
 - Fix problem with lost time, when the timer kicks in at <1000ms and Qt tells
   us that the time in seconds since the last tick was "0s".
