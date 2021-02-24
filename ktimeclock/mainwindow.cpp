@@ -167,8 +167,8 @@ void KTimeclockWindow::loadGeometry () {
     // ------------------------------------------------------------------------
     // Adjust the height/width based on our size hint.
     // ------------------------------------------------------------------------
-    w = QMAX( w, sizeHint().width() );
-    h = QMAX( h, sizeHint().height() );
+    w = qMax( w, sizeHint().width() );
+    h = qMax( h, sizeHint().height() );
 
     // ------------------------------------------------------------------------
     // Set the size of our window.
